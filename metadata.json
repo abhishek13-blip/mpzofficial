@@ -1,0 +1,6 @@
+{
+  "name": "MPZ HUB — Master 3D Artistry",
+  "description": "MPZ HUB 3D Motion Academy — master 3D animation, interactive scroll journeys, and creative digital artistry.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

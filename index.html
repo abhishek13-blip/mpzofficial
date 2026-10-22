@@ -1,0 +1,2795 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MPZ HUB — Master 3D Artistry</title>
+  <meta name="description" content="MPZ HUB 3D Motion Academy — master 3D animation, interactive scroll journeys, and creative digital artistry.">
+  <meta property="og:title" content="MPZ HUB — Master 3D Artistry">
+  <meta property="og:description" content="MPZ HUB 3D Motion Academy — master 3D animation, interactive scroll journeys, and creative digital artistry.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0d0b1a;
+      --muted: #4a4568;
+      --lilac: #e7e3fb;
+      --num: #cfc6f6;
+      --num-dark: rgba(214,203,255,.55);
+      --violet: #5b3bd1;
+      --pad: clamp(18px, 3.2vw, 46px);
+      --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--lilac);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      padding: 18px var(--pad) 0;
+      pointer-events: none;
+      transition: color .5s ease;
+    }
+    .nav > * { pointer-events: auto; }
+    .logo {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: clamp(28px, 5vw, 66px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 19px;
+    }
+    .logo svg {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      transition: transform .6s cubic-bezier(.2,.8,.2,1);
+    }
+    .logo:hover svg {
+      transform: rotate(90deg);
+    }
+    .logo-text {
+      white-space: nowrap;
+    }
+    .nav__links {
+      display: flex;
+      gap: clamp(22px, 4.5vw, 58px);
+      font-size: 15.5px;
+      font-weight: 400;
+    }
+    .nav__links a {
+      position: relative;
+    }
+    .nav__links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -3px;
+      height: 1.5px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .nav__links a:hover::after {
+      transform: scaleX(1);
+    }
+    .nav__cta-wrap {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-right: clamp(0px, 4vw, 70px);
+    }
+    .nav__cta {
+      font-weight: 600;
+      font-size: 16px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .nav__cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    /* OWNER PORTAL BUTTON */
+    .owner-trigger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(91, 59, 209, 0.12);
+      border: 1px solid rgba(91, 59, 209, 0.25);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--violet);
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+    .owner-trigger-btn:hover {
+      background: var(--violet);
+      color: #fff;
+      border-color: var(--violet);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(91, 59, 209, 0.3);
+    }
+    body.on-dark .owner-trigger-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+    body.on-dark .owner-trigger-btn:hover {
+      background: #fff;
+      color: #1e1145;
+    }
+
+    body.on-dark .nav,
+    body.on-dark .badge {
+      color: #fff;
+    }
+
+    /* BADGE */
+    .badge {
+      position: fixed;
+      z-index: 30;
+      right: var(--pad);
+      bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #2b2550;
+      transition: color .5s ease;
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.4);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+    .badge b {
+      font-weight: 700;
+      color: var(--violet);
+    }
+    body.on-dark .badge {
+      background: rgba(20, 10, 50, 0.4);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    body.on-dark .badge b {
+      color: #d9ccff;
+    }
+    .badge svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* BEE CANVAS */
+    #bee {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    #bee.ready {
+      opacity: 1;
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .flower {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform;
+      transition: opacity 0.4s ease;
+    }
+    .flower-wrap {
+      position: absolute;
+      pointer-events: none;
+    }
+    .flower-error-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(180, 160, 240, 0.15);
+      border: 2px dashed rgba(91, 59, 209, 0.3);
+      border-radius: 50%;
+      color: var(--violet);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--hero-bg, #e4e0fa) url("https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261016_130303_301c35dd-e2d1-4b40-a396-2b53f884d787.png") center/cover no-repeat;
+      overflow: visible;
+      z-index: 3;
+    }
+    .hero h1 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 15.5vh;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: clamp(42px, 6.25vw, 112px);
+      line-height: 1.04;
+      letter-spacing: -.035em;
+      color: var(--ink);
+      text-shadow: 0 0 40px rgba(255,255,255,.35);
+      will-change: transform;
+      z-index: 2;
+    }
+    .hero h1 .line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: .06em;
+    }
+    .hero h1 .line span {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+    .loaded .hero h1 .line span {
+      animation: rise 1.1s cubic-bezier(.2,.8,.15,1) forwards;
+    }
+    .hero h1 .line:nth-child(2) span {
+      animation-delay: .12s;
+    }
+    @keyframes rise {
+      to { transform: translateY(0); }
+    }
+
+    .hero__side {
+      position: absolute;
+      right: clamp(24px, 6.5vw, 120px);
+      top: 59vh;
+      width: min(280px, 80vw);
+      z-index: 2;
+      opacity: 0;
+    }
+    .loaded .hero__side {
+      animation: fade 1s .7s ease forwards;
+    }
+    .hero__side p {
+      font-size: clamp(15px, 1.45vw, 20px);
+      line-height: 1.32;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .join {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 40px;
+      font-weight: 600;
+      font-size: clamp(15px, 1.4vw, 19px);
+      transition: all 0.3s ease;
+    }
+    .join i {
+      width: 25px;
+      height: 32px;
+      border: 1.8px solid currentColor;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      transition: transform .35s ease, background .35s;
+    }
+    .join i svg {
+      width: 9px;
+      height: 9px;
+    }
+    .join:hover i {
+      transform: translateX(4px);
+    }
+
+    .hero .flower--cosmos {
+      width: clamp(420px, 64vw, 1100px);
+      aspect-ratio: 1100 / 980;
+      left: -14vw;
+      bottom: -24vw;
+      transform-origin: 60% 40%;
+      filter: drop-shadow(0 30px 40px rgba(80,50,160,.18));
+      z-index: 1;
+    }
+
+    /* SHARED TYPE */
+    .num {
+      font-weight: 600;
+      line-height: .8;
+      letter-spacing: -.06em;
+      font-size: clamp(110px, 15vw, 250px);
+      color: var(--num);
+      user-select: none;
+    }
+    .title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(30px, 3.4vw, 56px);
+      line-height: 1.12;
+      letter-spacing: -.02em;
+    }
+    .copy {
+      margin-top: 22px;
+      font-size: clamp(13.5px, 1.05vw, 16px);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 440px;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1.1s cubic-bezier(.2,.8,.15,1);
+    }
+    .in .reveal {
+      opacity: 1;
+      transform: none;
+    }
+    .in .reveal.d1 { transition-delay: .1s; }
+    .in .reveal.d2 { transition-delay: .22s; }
+    .in .reveal.d3 { transition-delay: .34s; }
+
+    /* SECTION 01 */
+    .s1 {
+      background: linear-gradient(180deg, var(--s1-start, #e4e0fa) 0%, var(--s1-end, #ece9fc) 100%);
+      z-index: 2;
+    }
+    .s1 .flower--hang {
+      width: clamp(380px, 46vw, 820px);
+      aspect-ratio: 820 / 1000;
+      left: -9vw;
+      top: -14vw;
+      transform-origin: 50% 0%;
+    }
+    .s1 .num {
+      position: absolute;
+      left: 6vw;
+      top: 50vh;
+    }
+    .s1 .text {
+      position: absolute;
+      left: 50vw;
+      top: 41vh;
+      width: min(520px, 44vw);
+    }
+
+    /* SECTION 02 (dark) */
+    .s2 {
+      background: var(--s2-bg-color, #3a1f8c) url("https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132814_c3d2b090-c27d-49d1-8107-66d0cfa216c2.png") center/cover no-repeat;
+      color: #fff;
+      z-index: 3;
+    }
+    .s2::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(25,10,70,.45) 0%, rgba(25,10,70,0) 55%);
+      pointer-events: none;
+    }
+    .s2 .num {
+      color: var(--num-dark);
+      position: relative;
+    }
+    .s2 .text {
+      position: absolute;
+      left: 6vw;
+      top: 22vh;
+      width: min(500px, 46vw);
+    }
+    .s2 .title {
+      margin-top: 22px;
+    }
+    .s2 .copy {
+      color: rgba(240,234,255,.82);
+    }
+    .s2 .flower--iris {
+      width: clamp(380px, 46vw, 820px);
+      aspect-ratio: 820 / 900;
+      right: -8vw;
+      bottom: -20vw;
+      transform-origin: 30% 30%;
+      filter: drop-shadow(0 40px 60px rgba(20,0,60,.45));
+      z-index: 2;
+    }
+
+    /* SECTION 03 */
+    .s3 {
+      background: linear-gradient(180deg, var(--s3-start, #ece9fc) 0%, var(--s3-end, #e7e3fb) 100%);
+      z-index: 1;
+    }
+    .s3 .flower--passion {
+      width: clamp(360px, 42vw, 760px);
+      aspect-ratio: 760 / 840;
+      left: -10vw;
+      top: 6vh;
+      transform-origin: 40% 50%;
+    }
+    .s3 .text {
+      position: absolute;
+      left: 54vw;
+      top: 26vh;
+      width: min(500px, 40vw);
+    }
+    .s3 .title {
+      margin-top: 24px;
+    }
+
+    /* FOOTER */
+    .foot {
+      background: var(--foot-bg, #e7e3fb);
+      height: 100vh;
+      z-index: 1;
+    }
+    .foot .brand {
+      position: absolute;
+      left: var(--pad);
+      bottom: 80px;
+    }
+    .foot .brand strong {
+      display: block;
+      font-size: clamp(30px, 3vw, 46px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .foot .brand span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .foot .cols {
+      position: absolute;
+      right: calc(var(--pad) + 120px);
+      bottom: 80px;
+      display: flex;
+      gap: 64px;
+      font-size: 14.5px;
+      font-weight: 500;
+    }
+    .foot .cols a {
+      display: block;
+      line-height: 1.9;
+      transition: color 0.2s ease;
+    }
+    .foot .cols a:hover {
+      color: var(--violet);
+    }
+    .foot .cta {
+      position: absolute;
+      left: 50%;
+      top: 18vh;
+      transform: translateX(-50%);
+      text-align: center;
+      width: 90%;
+      max-width: 700px;
+    }
+    .foot .cta .title {
+      font-size: clamp(30px, 3.6vw, 60px);
+    }
+
+    /* LOADER */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: var(--lilac);
+      display: grid;
+      place-items: center;
+      transition: opacity .8s ease, visibility .8s;
+    }
+    .loader.done {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .loader svg {
+      width: 48px;
+      height: 48px;
+      animation: spin 1.6s linear infinite;
+    }
+    .loader-brand {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 760px) {
+      .nav__links { display: none; }
+      .hero h1 { top: 14vh; }
+      .hero__side { top: auto; bottom: 14vh; right: 18px; width: 70vw; }
+      .hero .flower--cosmos { width: 110vw; left: -38vw; bottom: -55vw; }
+      .s1 .num { top: 16vh; left: auto; right: 6vw; }
+      .s1 .text, .s3 .text { left: 18px; right: 18px; width: auto; top: auto; bottom: 10vh; }
+      .s2 .text { left: 18px; right: 18px; width: auto; top: 14vh; }
+      .s3 .flower--passion { width: 90vw; }
+      .foot .cols { right: 18px; bottom: 150px; gap: 30px; }
+      .foot .brand { bottom: 150px; }
+    }
+
+    /* =====================================================================
+       OWNER DASHBOARD & AUTHENTICATION MODAL STYLING
+       ===================================================================== */
+    .owner-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(13, 11, 26, 0.75);
+      backdrop-filter: blur(12px);
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .owner-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* LOGIN MODAL */
+    .login-box {
+      width: 100%;
+      max-width: 440px;
+      margin: auto;
+      background: #141126;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 36px 32px;
+      color: #fff;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .login-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .login-brand-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .login-brand-sub {
+      font-size: 13px;
+      color: #9f9ab8;
+    }
+    .login-field {
+      margin-bottom: 20px;
+    }
+    .login-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #d1cde3;
+      margin-bottom: 8px;
+    }
+    .login-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .login-input:focus {
+      border-color: #8561f7;
+      background: rgba(255, 255, 255, 0.09);
+    }
+    .login-error {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fda4af;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .login-btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .btn-primary {
+      flex: 1;
+      background: #5b3bd1;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 14.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background: #6e4de3;
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #d1cde3;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    /* FULL DASHBOARD CONTAINER */
+    .dashboard-panel {
+      position: fixed;
+      inset: 20px;
+      background: #110e24;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      color: #f1effb;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      z-index: 101;
+    }
+    .dashboard-panel.active {
+      display: flex;
+    }
+    .dash-header {
+      padding: 16px 24px;
+      background: #171330;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .dash-brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dash-status-pill {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .dash-status-pill.draft {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    .dash-actions-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dash-body {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+    .dash-sidebar {
+      width: 250px;
+      background: #141029;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+    .dash-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: #a49fc0;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dash-nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+    .dash-nav-item.active {
+      background: #5b3bd1;
+      color: #fff;
+      font-weight: 600;
+    }
+    .dash-content {
+      flex: 1;
+      padding: 28px 36px;
+      overflow-y: auto;
+      background: #110e24;
+    }
+
+    .dash-section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .dash-section-sub {
+      font-size: 13.5px;
+      color: #9d98ba;
+      margin-bottom: 24px;
+    }
+    .dash-card {
+      background: #181434;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .dash-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #e5e2f7;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #bcb8d6;
+      margin-bottom: 6px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13.5px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: #7a58ec;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .form-textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .toggle-label-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .toggle-label {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #e2dff5;
+    }
+    .toggle-sub {
+      font-size: 12px;
+      color: #8c87aa;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.15);
+      transition: .3s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #5b3bd1;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      background: #1e193d;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 200;
+      pointer-events: none;
+    }
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- LOADING SCREEN (Clean modern geometric MPZ HUB mark) -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#0d0b1a">
+        <path d="M20 3L35 11.66V28.34L20 37L5 28.34V11.66L20 3Z" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M20 3V20M20 20L35 28.34M20 20L5 28.34" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="3" fill="#0d0b1a"/>
+      </svg>
+      <div class="loader-brand">MPZ HUB</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="main-nav">
+    <a class="logo" href="#top" aria-label="MPZ HUB Home">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor">
+        <path d="M20 3L35 11.66V28.34L20 37L5 28.34V11.66L20 3Z" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M20 3V20M20 20L35 28.34M20 20L5 28.34" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2.5" fill="currentColor"/>
+      </svg>
+      <span class="logo-text" id="header-brand-name">MPZ HUB</span>
+    </a>
+    <div class="nav__links" id="nav-links-container">
+      <a href="#about">Inside the class</a>
+      <a href="#contact">Ping us</a>
+    </div>
+    <div class="nav__cta-wrap">
+      <button class="owner-trigger-btn" id="open-owner-btn" aria-label="Open Owner Dashboard">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Owner
+      </button>
+      <a class="nav__cta" id="nav-cta-link" href="#access">Buzz in!</a>
+    </div>
+  </nav>
+
+  <!-- 3D BEE CANVAS -->
+  <canvas id="bee"></canvas>
+
+  <!-- MAIN SCROLL STORY -->
+  <main>
+    <section class="hero" id="top" data-theme="light">
+      <h1 data-speed="0.55" id="hero-headline">
+        <span class="line"><span id="hero-h1-line1">Imagine your next site</span></span>
+        <span class="line"><span id="hero-h1-line2">built just like this</span></span>
+      </h1>
+      <img
+        class="flower flower--cosmos"
+        id="img-cosmos"
+        data-speed="-0.25"
+        data-rot="8"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132919_c994332b-7f9d-43b5-933d-1e94faa91dd4.png"
+        alt="Dewy purple cosmos blossom"
+        width="1100"
+        height="980"
+        decoding="async"
+      />
+      <div class="hero__side">
+        <p id="hero-subtext">Master 3D animation in just three days with our newest program</p>
+        <div id="hero-buttons-container">
+          <a class="join" id="hero-join-btn" href="#access">
+            <i>
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 1l4 4-4 4" /></svg>
+            </i>
+            <span id="hero-join-text">Buzz in!</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="s1" id="about" data-theme="light">
+      <img
+        class="flower flower--hang"
+        id="img-hanging-cosmos"
+        data-speed="0.35"
+        data-rot="-6"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132924_764b726d-d37a-44cc-8eba-662d823d9a4c.png"
+        alt="Hanging upside-down cosmos flower"
+        width="820"
+        height="1000"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="num reveal" id="s1-number">01</div>
+      <div class="text">
+        <h2 class="title reveal d1" id="s1-title">Explore this<br>Universe of<br>3D Motion</h2>
+        <p class="copy reveal d2" id="s1-copy">Every lesson is crafted by studio veterans to equip you with the newest methods and software in 3D animation. Whether you're just starting or already a pro, our program will sharpen your skills fast.</p>
+      </div>
+    </section>
+
+    <section class="s2" id="access" data-theme="dark">
+      <div class="text">
+        <div class="num reveal" id="s2-number">02</div>
+        <h2 class="title reveal d1" id="s2-title">Claim Early<br>Invite</h2>
+        <p class="copy reveal d2" id="s2-copy">Get early entry to our all-new 3D animation lessons! Add your name to the waitlist and you'll be first to enroll with VIP pricing.</p>
+      </div>
+      <img
+        class="flower flower--iris"
+        id="img-iris-petal"
+        data-speed="-0.3"
+        data-rot="10"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132814_c3d2b090-c27d-49d1-8107-66d0cfa216c2.png"
+        alt="Vibrant velvet iris petal with dewdrops"
+        width="820"
+        height="900"
+        loading="lazy"
+        decoding="async"
+      />
+    </section>
+
+    <section class="s3" data-theme="light">
+      <img
+        class="flower flower--passion"
+        id="img-passion-flower"
+        data-speed="-0.2"
+        data-rot="-10"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132921_d71538ea-5066-4372-963a-2f2d6468374f.png"
+        alt="Exotic blooming passion flower with radial filaments"
+        width="760"
+        height="840"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="text">
+        <div class="num reveal" id="s3-number">03</div>
+        <h2 class="title reveal d1" id="s3-title">Study and<br>Build with Us!</h2>
+        <p class="copy reveal d2" id="s3-copy">Become part of a lively hive of artists. Ship real work, get notes from expert mentors and see your concepts come alive in vivid 3D depth.</p>
+      </div>
+    </section>
+
+    <section class="foot" id="contact" data-theme="light">
+      <div class="cta">
+        <h2 class="title reveal" id="footer-heading">Prepared to fly high?</h2>
+        <div id="footer-buttons-container">
+          <a class="join reveal d1" id="footer-join-btn" href="#access">
+            <i>
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 1l4 4-4 4" /></svg>
+            </i>
+            <span id="footer-join-text">Buzz in!</span>
+          </a>
+        </div>
+      </div>
+      <div class="brand reveal">
+        <strong id="footer-brand-name">MPZ HUB</strong>
+        <span id="footer-tagline">A 3D motion academy</span>
+      </div>
+      <div class="cols reveal d1" id="footer-social-cols">
+        <div>
+          <a href="https://youtube.com/@mpzhub" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://linkedin.com/company/mpzhub" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://instagram.com/mpzhub" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+        <div>
+          <a href="https://facebook.com/mpzhub" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://dribbble.com/mpzhub" target="_blank" rel="noopener noreferrer">Dribbble</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MPZ HUB BADGE (Fixed Bottom-Right) -->
+  <div class="badge" id="site-badge">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M10 2L17 6V14L10 18L3 14V6L10 2Z" />
+      <path d="M10 6L14 8.5V13.5L10 16L6 13.5V8.5L10 6Z" fill="currentColor" fill-opacity="0.25" />
+    </svg>
+    <span id="badge-text-prefix">Created with</span> <b id="badge-brand-text">MPZ HUB</b>
+  </div>
+
+  <!-- =====================================================================
+       OWNER AUTHENTICATION MODAL
+       ===================================================================== -->
+  <div class="owner-overlay" id="login-modal-overlay">
+    <div class="login-box">
+      <div class="login-brand-row">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="#5b3bd1">
+          <path d="M20 3L35 11.66V28.34L20 37L5 28.34V11.66L20 3Z" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M20 3V20M20 20L35 28.34M20 20L5 28.34" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="3" fill="#5b3bd1"/>
+        </svg>
+        <div>
+          <div class="login-brand-title">MPZ HUB Owner Portal</div>
+          <div class="login-brand-sub">Authenticate with your secret owner key</div>
+        </div>
+      </div>
+
+      <div class="login-error" id="login-error-msg"></div>
+
+      <form id="owner-login-form">
+        <div class="login-field">
+          <label class="login-label" for="owner-key-input">MPZ_HUB_OWNER_KEY</label>
+          <input
+            type="password"
+            id="owner-key-input"
+            class="login-input"
+            placeholder="Enter server owner secret key..."
+            required
+            autocomplete="current-password"
+          />
+        </div>
+        <div class="login-btn-row">
+          <button type="button" class="btn-ghost" id="cancel-login-btn">Cancel</button>
+          <button type="submit" class="btn-primary" id="submit-login-btn">
+            Unlock Dashboard
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       FULL PROFESSIONAL OWNER DASHBOARD (12 TABS)
+       ===================================================================== -->
+  <div class="dashboard-panel" id="owner-dashboard">
+    <div class="dash-header">
+      <div class="dash-brand-title">
+        <svg width="24" height="24" viewBox="0 0 40 40" fill="none" stroke="#5b3bd1">
+          <path d="M20 3L35 11.66V28.34L20 37L5 28.34V11.66L20 3Z" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M20 3V20M20 20L35 28.34M20 20L5 28.34" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="3" fill="#5b3bd1"/>
+        </svg>
+        <span>MPZ HUB Control Center</span>
+        <span class="dash-status-pill" id="dash-version-pill">Published v1</span>
+      </div>
+
+      <div class="dash-actions-top">
+        <button class="btn-ghost" id="save-draft-btn" style="padding: 8px 14px; font-size: 13px;">Save Draft</button>
+        <button class="btn-primary" id="publish-btn" style="padding: 8px 18px; font-size: 13px;">Publish Changes</button>
+        <button class="btn-ghost" id="close-dash-btn" style="padding: 8px 12px; font-size: 13px;">Exit</button>
+      </div>
+    </div>
+
+    <div class="dash-body">
+      <!-- SIDEBAR -->
+      <aside class="dash-sidebar" id="dash-sidebar">
+        <div class="dash-nav-item active" data-tab="tab-overview">1. Overview</div>
+        <div class="dash-nav-item" data-tab="tab-general">2. General Settings</div>
+        <div class="dash-nav-item" data-tab="tab-branding">3. Branding</div>
+        <div class="dash-nav-item" data-tab="tab-buttons">4. Button Manager</div>
+        <div class="dash-nav-item" data-tab="tab-images">5. Image Manager</div>
+        <div class="dash-nav-item" data-tab="tab-bee">6. Bee Animation</div>
+        <div class="dash-nav-item" data-tab="tab-typography">7. Font & Typography</div>
+        <div class="dash-nav-item" data-tab="tab-social">8. Social Media</div>
+        <div class="dash-nav-item" data-tab="tab-contact">9. Contact Information</div>
+        <div class="dash-nav-item" data-tab="tab-theme">10. Theme Customization</div>
+        <div class="dash-nav-item" data-tab="tab-publishing">11. Preview & Publishing</div>
+        <div class="dash-nav-item" data-tab="tab-security">12. Security & Owner Access</div>
+      </aside>
+
+      <!-- CONTENT PANES -->
+      <main class="dash-content" id="dash-tab-content">
+        <!-- TAB 1: OVERVIEW -->
+        <section id="tab-overview" class="tab-pane">
+          <h2 class="dash-section-title">System Overview</h2>
+          <p class="dash-section-sub">Current status of MPZ HUB website, active configurations, and runtime health.</p>
+
+          <div class="grid-3">
+            <div class="dash-card">
+              <div class="dash-card-title">Brand & Identity</div>
+              <div style="font-size: 24px; font-weight: 700; color: #a78bfa;" id="stat-brand">MPZ HUB</div>
+              <div style="font-size: 12.5px; color: #9f9ab8; margin-top: 4px;">Active visual theme</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-title">Custom Buttons</div>
+              <div style="font-size: 24px; font-weight: 700; color: #34d399;" id="stat-buttons">5 Configured</div>
+              <div style="font-size: 12.5px; color: #9f9ab8; margin-top: 4px;">Dynamic actions active</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-title">3D Honeybee Animation</div>
+              <div style="font-size: 24px; font-weight: 700; color: #38bdf8;" id="stat-bee">Active</div>
+              <div style="font-size: 12.5px; color: #9f9ab8; margin-top: 4px;">Hardware accelerated WebGL</div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Quick Actions</div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button class="btn-ghost" onclick="switchTab('tab-buttons')">Customize Buttons</button>
+              <button class="btn-ghost" onclick="switchTab('tab-images')">Replace Flower Assets</button>
+              <button class="btn-ghost" onclick="switchTab('tab-bee')">Tweak Bee Flight Path</button>
+              <button class="btn-ghost" onclick="switchTab('tab-theme')">Adjust Palette & Colors</button>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Publishing & Version History</div>
+            <div style="font-size: 13.5px; color: #c4bfdc;" id="stat-timestamps">
+              Last saved: Ready • Published state active
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: GENERAL SETTINGS -->
+        <section id="tab-general" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">General Content Settings</h2>
+          <p class="dash-section-sub">Customize headlines, section copy, numbers, and landing descriptions.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Hero Section Headline & Copy</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Headline Line 1</label>
+                <input type="text" class="form-input" id="inp-hero-line1" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Headline Line 2</label>
+                <input type="text" class="form-input" id="inp-hero-line2" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Hero Side Subtext</label>
+              <textarea class="form-textarea" id="inp-hero-subtext"></textarea>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Section 01 (Explore Motion)</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Section Number</label>
+                <input type="text" class="form-input" id="inp-s1-num" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Title (use \n for linebreaks)</label>
+                <textarea class="form-textarea" id="inp-s1-title" style="min-height: 50px;"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Section 01 Copy</label>
+              <textarea class="form-textarea" id="inp-s1-copy"></textarea>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Section 02 (Claim Early Invite - Dark)</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Section Number</label>
+                <input type="text" class="form-input" id="inp-s2-num" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Title</label>
+                <textarea class="form-textarea" id="inp-s2-title" style="min-height: 50px;"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Section 02 Copy</label>
+              <textarea class="form-textarea" id="inp-s2-copy"></textarea>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Section 03 (Study and Build)</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Section Number</label>
+                <input type="text" class="form-input" id="inp-s3-num" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Title</label>
+                <textarea class="form-textarea" id="inp-s3-title" style="min-height: 50px;"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Section 03 Copy</label>
+              <textarea class="form-textarea" id="inp-s3-copy"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: BRANDING -->
+        <section id="tab-branding" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Branding & Visual Identity</h2>
+          <p class="dash-section-sub">Configure the official brand name, logo text, footer brand, and badge attributes.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Official Brand Settings</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Brand Name</label>
+                <input type="text" class="form-input" id="inp-brand-name" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tagline</label>
+                <input type="text" class="form-input" id="inp-brand-tagline" />
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Footer Brand Text</label>
+                <input type="text" class="form-input" id="inp-footer-brand" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Footer Subtitle</label>
+                <input type="text" class="form-input" id="inp-footer-subbrand" />
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Badge Prefix (e.g. "Created with")</label>
+                <input type="text" class="form-input" id="inp-badge-prefix" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Badge Brand Label</label>
+                <input type="text" class="form-input" id="inp-badge-brand" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: BUTTON BUILDER -->
+        <section id="tab-buttons" class="tab-pane" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <div>
+              <h2 class="dash-section-title">Button Builder & Manager</h2>
+              <p class="dash-section-sub" style="margin-bottom: 0;">Create, style, customize, reorder, and secure website buttons.</p>
+            </div>
+            <button class="btn-primary" id="add-new-btn" style="padding: 8px 16px; font-size: 13px;">+ Add Button</button>
+          </div>
+
+          <div id="buttons-list-container">
+            <!-- Dynamically populated button cards -->
+          </div>
+        </section>
+
+        <!-- TAB 5: IMAGE MANAGER -->
+        <section id="tab-images" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Image & Asset Manager</h2>
+          <p class="dash-section-sub">Inspect, preview, replace, upload, and repair all visual assets with fallbacks.</p>
+
+          <div id="images-list-container">
+            <!-- Dynamically populated image cards -->
+          </div>
+        </section>
+
+        <!-- TAB 6: BEE ANIMATION -->
+        <section id="tab-bee" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">3D Honeybee Animation Controller</h2>
+          <p class="dash-section-sub">Fine-tune the Three.js 3D bumblebee flight path, speed, banking, and viewport anchors.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Flight Dynamics & Parameters</div>
+            <div class="toggle-row">
+              <div class="toggle-label-wrap">
+                <span class="toggle-label">Enable 3D Honeybee Animation</span>
+                <span class="toggle-sub">Render the scroll-driven WebGL bee</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="chk-bee-enabled" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-label-wrap">
+                <span class="toggle-label">Respect Reduced-Motion Preference</span>
+                <span class="toggle-sub">Gently idle when visitors have prefers-reduced-motion set</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="chk-bee-reduced-motion" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-label-wrap">
+                <span class="toggle-label">Enable Dynamic Turn Banking & Diving Pitch</span>
+                <span class="toggle-sub">Physically bank into turns based on velocity</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="chk-bee-banking" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="grid-2" style="margin-top: 16px;">
+              <div class="form-group">
+                <label class="form-label">Flight Speed Multiplier: <span id="val-bee-speed">1.0x</span></label>
+                <input type="range" min="0.3" max="2.5" step="0.1" value="1.0" class="form-input" id="rng-bee-speed" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Bee Size Multiplier: <span id="val-bee-size">1.0x</span></label>
+                <input type="range" min="0.5" max="2.0" step="0.05" value="1.0" class="form-input" id="rng-bee-size" />
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Hover Amplitude: <span id="val-bee-hover">1.0x</span></label>
+                <input type="range" min="0" max="2.0" step="0.1" value="1.0" class="form-input" id="rng-bee-hover" />
+              </div>
+              <div class="form-group" style="display: flex; align-items: flex-end;">
+                <button class="btn-ghost" id="btn-restore-bee-defaults" style="width: 100%;">Restore Default Flight Path</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 7: TYPOGRAPHY -->
+        <section id="tab-typography" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Font & Typography Settings</h2>
+          <p class="dash-section-sub">Configure font family stacks, weights, and heading hierarchy without breaking layout.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Font Selection</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Primary Font Family</label>
+                <select class="form-select" id="sel-font-family">
+                  <option value="Poppins, system-ui, sans-serif">Poppins (Original Default)</option>
+                  <option value="'Plus Jakarta Sans', system-ui, sans-serif">Plus Jakarta Sans</option>
+                  <option value="Outfit, system-ui, sans-serif">Outfit</option>
+                  <option value="system-ui, -apple-system, sans-serif">Modern System UI</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Headline Font Weight</label>
+                <select class="form-select" id="sel-headline-weight">
+                  <option value="800">800 — Extra Bold (Default)</option>
+                  <option value="700">700 — Bold</option>
+                  <option value="600">600 — Semi Bold</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 8: SOCIAL MEDIA -->
+        <section id="tab-social" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Social Media Channels</h2>
+          <p class="dash-section-sub">Configure footer social links, ordering, and channel profiles.</p>
+          <div class="dash-card" id="social-links-editor">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- TAB 9: CONTACT INFORMATION -->
+        <section id="tab-contact" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Contact & Studio Information</h2>
+          <p class="dash-section-sub">Set studio contact points, email, phone, and copyright lines.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Contact Channels</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Studio Email</label>
+                <input type="email" class="form-input" id="inp-contact-email" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Studio Phone</label>
+                <input type="text" class="form-input" id="inp-contact-phone" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Footer Tagline & Studio Description</label>
+              <textarea class="form-textarea" id="inp-contact-support"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Copyright Notice</label>
+              <input type="text" class="form-input" id="inp-contact-copyright" />
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 10: THEME -->
+        <section id="tab-theme" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Theme & Color Palette</h2>
+          <p class="dash-section-sub">Fine-tune the lavender, violet, and dark contrast theme variables.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Core Theme Colors</div>
+            <div class="grid-3">
+              <div class="form-group">
+                <label class="form-label">Violet Accent</label>
+                <input type="color" class="form-input" style="height: 42px; padding: 4px;" id="col-violet" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Lilac Base</label>
+                <input type="color" class="form-input" style="height: 42px; padding: 4px;" id="col-lilac" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dark Ink Text</label>
+                <input type="color" class="form-input" style="height: 42px; padding: 4px;" id="col-ink" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 11: PUBLISHING -->
+        <section id="tab-publishing" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Preview & Publishing</h2>
+          <p class="dash-section-sub">Deploy changes live to visitors, test draft variations, or revert.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Publish Controls</div>
+            <p style="font-size: 13.5px; color: #b7b2d5; margin-bottom: 16px;">
+              Saving drafts lets you experiment with buttons, bee kinematics, and assets without affecting live visitors. Publishing commits your changes to the server database.
+            </p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button class="btn-primary" id="btn-publish-final">Publish Changes Now</button>
+              <button class="btn-ghost" id="btn-save-draft-tab">Save Draft Only</button>
+              <button class="btn-ghost" id="btn-reset-factory" style="color: #f87171; border-color: rgba(248,113,113,0.3);">Restore Factory Defaults</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 12: SECURITY & OWNER ACCESS -->
+        <section id="tab-security" class="tab-pane" style="display: none;">
+          <h2 class="dash-section-title">Security & Owner Access</h2>
+          <p class="dash-section-sub">Owner secret key architecture, session safety, and key rotation.</p>
+
+          <div class="dash-card">
+            <div class="dash-card-title">Owner Key Configuration</div>
+            <p style="font-size: 13.5px; line-height: 1.6; color: #cbc7e7; margin-bottom: 16px;">
+              The administrative portal is strictly protected by the <code>MPZ_HUB_OWNER_KEY</code> secret.
+              Authentication uses timing-safe cryptographic comparisons, exponential IP rate-limiting, and signed HMAC-SHA256 session tokens.
+            </p>
+            <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 14px; font-family: monospace; font-size: 12.5px; color: #a5b4fc; margin-bottom: 16px;">
+              Environment Variable: MPZ_HUB_OWNER_KEY<br/>
+              Session Lifetime: 8 Hours (Secure Cookie)<br/>
+              Rate Limiting: Max 5 attempts per 15 minutes
+            </div>
+            <button class="btn-ghost" id="btn-logout-owner" style="color: #f87171;">Logout of Owner Portal</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-msg" id="toast">Changes saved successfully</div>
+
+  <!-- =====================================================================
+       CLIENT APPLICATION LOGIC & THREE.JS 3D SCENE
+       ===================================================================== -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    /* =====================================================================
+       APP STATE & SETTINGS MANAGEMENT
+       ===================================================================== */
+    let currentSettings = null;
+    let isOwnerAuthenticated = false;
+    let authToken = localStorage.getItem('mpz_owner_token') || null;
+
+    // Toast helper
+    function showToast(msg, duration = 3000) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), duration);
+    }
+
+    // Load settings from server
+    async function loadSiteSettings() {
+      try {
+        const isDraftUrl = window.location.search.includes('draft=true');
+        const headers = {};
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        const res = await fetch(`/api/settings${isDraftUrl ? '?draft=true' : ''}`, { headers });
+        if (res.ok) {
+          const data = await res.json();
+          currentSettings = data.settings;
+          applySettingsToDom(currentSettings);
+          return;
+        }
+      } catch (err) {
+        console.warn('Could not fetch remote settings, using bundled defaults', err);
+      }
+    }
+
+    // Apply settings to DOM elements
+    function applySettingsToDom(cfg) {
+      if (!cfg) return;
+
+      // 1. Branding
+      if (cfg.branding) {
+        document.title = `${cfg.branding.brandName} — Master 3D Artistry`;
+        const bName = document.getElementById('header-brand-name');
+        if (bName) bName.textContent = cfg.branding.brandName;
+
+        const fBrand = document.getElementById('footer-brand-name');
+        if (fBrand) fBrand.textContent = cfg.branding.footerBrandName || cfg.branding.brandName;
+
+        const fTag = document.getElementById('footer-tagline');
+        if (fTag) fTag.textContent = cfg.branding.footerSubbrand || cfg.branding.tagline;
+
+        const bPrefix = document.getElementById('badge-text-prefix');
+        if (bPrefix) bPrefix.textContent = cfg.branding.badgeText || 'Created with';
+
+        const bBrand = document.getElementById('badge-brand-text');
+        if (bBrand) bBrand.textContent = cfg.branding.badgeBrand || cfg.branding.brandName;
+
+        // Section headlines
+        const h1 = document.getElementById('hero-h1-line1');
+        if (h1 && cfg.branding.heroHeadlineLine1) h1.textContent = cfg.branding.heroHeadlineLine1;
+        const h2 = document.getElementById('hero-h1-line2');
+        if (h2 && cfg.branding.heroHeadlineLine2) h2.textContent = cfg.branding.heroHeadlineLine2;
+
+        const sub = document.getElementById('hero-subtext');
+        if (sub && cfg.branding.heroSubtext) sub.textContent = cfg.branding.heroSubtext;
+
+        // S1, S2, S3
+        const s1Num = document.getElementById('s1-number');
+        if (s1Num) s1Num.textContent = cfg.branding.s1Number || '01';
+        const s1Title = document.getElementById('s1-title');
+        if (s1Title) s1Title.innerHTML = (cfg.branding.s1Title || '').replace(/\n/g, '<br>');
+        const s1Copy = document.getElementById('s1-copy');
+        if (s1Copy) s1Copy.textContent = cfg.branding.s1Copy;
+
+        const s2Num = document.getElementById('s2-number');
+        if (s2Num) s2Num.textContent = cfg.branding.s2Number || '02';
+        const s2Title = document.getElementById('s2-title');
+        if (s2Title) s2Title.innerHTML = (cfg.branding.s2Title || '').replace(/\n/g, '<br>');
+        const s2Copy = document.getElementById('s2-copy');
+        if (s2Copy) s2Copy.textContent = cfg.branding.s2Copy;
+
+        const s3Num = document.getElementById('s3-number');
+        if (s3Num) s3Num.textContent = cfg.branding.s3Number || '03';
+        const s3Title = document.getElementById('s3-title');
+        if (s3Title) s3Title.innerHTML = (cfg.branding.s3Title || '').replace(/\n/g, '<br>');
+        const s3Copy = document.getElementById('s3-copy');
+        if (s3Copy) s3Copy.textContent = cfg.branding.s3Copy;
+
+        const fHead = document.getElementById('footer-heading');
+        if (fHead && cfg.branding.footerHeading) fHead.textContent = cfg.branding.footerHeading;
+      }
+
+      // 2. Buttons
+      if (Array.isArray(cfg.buttons)) {
+        // Nav links
+        const navContainer = document.getElementById('nav-links-container');
+        if (navContainer) {
+          const navBtns = cfg.buttons.filter(b => b.enabled && b.placement === 'nav');
+          if (navBtns.length > 0) {
+            navContainer.innerHTML = '';
+            navBtns.forEach(btn => {
+              const a = document.createElement('a');
+              a.href = btn.url;
+              a.textContent = btn.label;
+              if (btn.target) a.target = btn.target;
+              if (btn.target === '_blank') a.rel = 'noopener noreferrer';
+              navContainer.appendChild(a);
+            });
+          }
+        }
+
+        // Nav CTA
+        const navCta = document.getElementById('nav-cta-link');
+        const ctaConfig = cfg.buttons.find(b => b.enabled && b.placement === 'navCta');
+        if (navCta && ctaConfig) {
+          navCta.href = ctaConfig.url;
+          navCta.textContent = ctaConfig.label;
+          if (ctaConfig.target) navCta.target = ctaConfig.target;
+        }
+
+        // Hero CTA
+        const heroBtn = document.getElementById('hero-join-btn');
+        const heroJoinText = document.getElementById('hero-join-text');
+        const heroConfig = cfg.buttons.find(b => b.enabled && b.placement === 'hero');
+        if (heroBtn && heroConfig) {
+          heroBtn.href = heroConfig.url;
+          if (heroJoinText) heroJoinText.textContent = heroConfig.label;
+          if (heroConfig.style && heroConfig.style.borderRadius !== undefined) {
+            heroBtn.style.borderRadius = `${heroConfig.style.borderRadius}px`;
+          }
+        }
+
+        // Footer CTA
+        const footBtn = document.getElementById('footer-join-btn');
+        const footJoinText = document.getElementById('footer-join-text');
+        const footConfig = cfg.buttons.find(b => b.enabled && b.placement === 'footer');
+        if (footBtn && footConfig) {
+          footBtn.href = footConfig.url;
+          if (footJoinText) footJoinText.textContent = footConfig.label;
+        }
+      }
+
+      // 3. Images (sources, alt texts, visibility)
+      if (cfg.images) {
+        const cosmos = document.getElementById('img-cosmos');
+        if (cosmos && cfg.images.cosmos) {
+          cosmos.src = cfg.images.cosmos.url;
+          cosmos.alt = cfg.images.cosmos.alt || 'Purple Cosmos';
+          cosmos.style.display = cfg.images.cosmos.visible !== false ? 'block' : 'none';
+        }
+
+        const hang = document.getElementById('img-hanging-cosmos');
+        if (hang && cfg.images.hangingCosmos) {
+          hang.src = cfg.images.hangingCosmos.url;
+          hang.alt = cfg.images.hangingCosmos.alt || 'Hanging Cosmos';
+          hang.style.display = cfg.images.hangingCosmos.visible !== false ? 'block' : 'none';
+        }
+
+        const iris = document.getElementById('img-iris-petal');
+        if (iris && cfg.images.irisPetal) {
+          iris.src = cfg.images.irisPetal.url;
+          iris.alt = cfg.images.irisPetal.alt || 'Iris Petal';
+          iris.style.display = cfg.images.irisPetal.visible !== false ? 'block' : 'none';
+        }
+
+        const passion = document.getElementById('img-passion-flower');
+        if (passion && cfg.images.passionFlower) {
+          passion.src = cfg.images.passionFlower.url;
+          passion.alt = cfg.images.passionFlower.alt || 'Passion Flower';
+          passion.style.display = cfg.images.passionFlower.visible !== false ? 'block' : 'none';
+        }
+      }
+
+      // 4. Theme CSS Variables
+      if (cfg.theme) {
+        const r = document.documentElement;
+        if (cfg.theme.violet) r.style.setProperty('--violet', cfg.theme.violet);
+        if (cfg.theme.lilac) r.style.setProperty('--lilac', cfg.theme.lilac);
+        if (cfg.theme.ink) r.style.setProperty('--ink', cfg.theme.ink);
+        if (cfg.theme.muted) r.style.setProperty('--muted', cfg.theme.muted);
+      }
+
+      // 5. Typography
+      if (cfg.typography && cfg.typography.fontFamily) {
+        document.documentElement.style.setProperty('--font-body', cfg.typography.fontFamily);
+      }
+    }
+
+    /* =====================================================================
+       DOM SCROLL EFFECTS & PARALLAX
+       ===================================================================== */
+    const sections = document.querySelectorAll('main > section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach((sec) => observer.observe(sec));
+
+    const speedEls = document.querySelectorAll('[data-speed]');
+    function updateDomScroll() {
+      const h = window.innerHeight || 1;
+      speedEls.forEach((el) => {
+        const sec = el.closest('section');
+        if (!sec) return;
+        const rect = sec.getBoundingClientRect();
+        const p = -rect.top / h;
+        const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+        const rot = parseFloat(el.getAttribute('data-rot')) || 0;
+        el.style.transform = `translate3d(0, ${p * speed * h}px, 0) rotate(${p * rot}deg)`;
+      });
+
+      const navY = h * 0.06;
+      let activeTheme = 'light';
+      sections.forEach((sec) => {
+        const r = sec.getBoundingClientRect();
+        if (r.top <= navY && r.bottom > navY) {
+          activeTheme = sec.getAttribute('data-theme') || 'light';
+        }
+      });
+      document.body.classList.toggle('on-dark', activeTheme === 'dark');
+    }
+
+    window.addEventListener('scroll', updateDomScroll, { passive: true });
+    window.addEventListener('resize', updateDomScroll, { passive: true });
+    updateDomScroll();
+
+    /* =====================================================================
+       LOADER TERMINATION
+       ===================================================================== */
+    const loaderEl = document.getElementById('loader');
+    const beeCanvas = document.getElementById('bee');
+    let loaded = false;
+
+    function finishLoader() {
+      if (loaded) return;
+      loaded = true;
+      if (loaderEl) loaderEl.classList.add('done');
+      document.body.classList.add('loaded');
+    }
+
+    setTimeout(finishLoader, 2500);
+
+    /* =====================================================================
+       THREE.JS SCENE SETUP
+       ===================================================================== */
+    const renderer = new THREE.WebGLRenderer({
+      canvas: beeCanvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight, false);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+
+    const scene = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    pmrem.dispose();
+
+    const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0, 10);
+
+    const hemiLight = new THREE.HemisphereLight(0xf2eeff, 0x7a62c9, 1.3);
+    scene.add(hemiLight);
+
+    const dirLight1 = new THREE.DirectionalLight(0xfff1d6, 2.6);
+    dirLight1.position.set(3, 5, 6);
+    scene.add(dirLight1);
+
+    const dirLight2 = new THREE.DirectionalLight(0xc8b8ff, 2.2);
+    dirLight2.position.set(-5, 2, -4);
+    scene.add(dirLight2);
+
+    const flight = new THREE.Group();
+    scene.add(flight);
+
+    const beeRoot = new THREE.Group();
+    flight.add(beeRoot);
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight, false);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+
+    /* =====================================================================
+       PROCEDURAL WINGS
+       ===================================================================== */
+    const flapGroups = [];
+    let wingTexture = null;
+
+    function buildWings(anchorX, anchorY, anchorZ) {
+      const wingImg = new Image();
+      wingImg.crossOrigin = 'anonymous';
+      wingImg.onload = () => {
+        const wCanvas = document.createElement('canvas');
+        wCanvas.width = 1024;
+        wCanvas.height = 576;
+        const ctx = wCanvas.getContext('2d');
+        ctx.drawImage(wingImg, 0, 0, 1024, 576);
+        const imgData = ctx.getImageData(0, 0, 1024, 576);
+        const data = imgData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const l = (r * 0.3 + g * 0.59 + b * 0.11) / 255;
+          const alpha = Math.min(Math.max((l - 0.035) * 4.2, 0), 1) * 255;
+
+          data[i] = Math.min(255, r * 1.5 + 30);
+          data[i + 1] = Math.min(255, g * 1.5 + 30);
+          data[i + 2] = Math.min(255, b * 1.5 + 40);
+          data[i + 3] = alpha;
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+
+        wingTexture = new THREE.CanvasTexture(wCanvas);
+        wingTexture.colorSpace = THREE.SRGBColorSpace;
+        wingTexture.needsUpdate = true;
+
+        attachProceduralWings(anchorX, anchorY, anchorZ, wingTexture);
+      };
+      wingImg.src = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132814_3a56ac14-47d8-4e49-a163-94234dea5639.png';
+    }
+
+    function createWingGeometry(span) {
+      const geom = new THREE.PlaneGeometry(span, span * 9 / 16);
+      geom.translate(span / 2 - span * 0.03, 0, 0);
+      geom.rotateX(-Math.PI / 2);
+      geom.rotateY(-Math.PI / 2);
+      return geom;
+    }
+
+    function attachProceduralWings(anchorX, anchorY, anchorZ, texture) {
+      const wingDefs = [
+        { span: 0.72, sweep: -0.42, phase: 0, lift: 0.02 },
+        { span: 0.52, sweep: -0.95, phase: -0.5, lift: -0.01 }
+      ];
+
+      const flapLayers = [
+        { offset: 0, opacity: 0.95 },
+        { offset: 0.55, opacity: 0.28 },
+        { offset: -0.55, opacity: 0.28 }
+      ];
+
+      [-1, 1].forEach((sideMult) => {
+        const wingBase = new THREE.Group();
+        wingBase.position.set(anchorX, anchorY, anchorZ * sideMult);
+        if (sideMult === -1) {
+          wingBase.scale.set(1, 1, -1);
+        }
+        beeRoot.add(wingBase);
+
+        wingDefs.forEach((wDef) => {
+          const sweepGroup = new THREE.Group();
+          sweepGroup.position.y = wDef.lift;
+          sweepGroup.rotation.y = wDef.sweep;
+          wingBase.add(sweepGroup);
+
+          const geom = createWingGeometry(wDef.span);
+
+          flapLayers.forEach((fl) => {
+            const flapGroup = new THREE.Group();
+            sweepGroup.add(flapGroup);
+
+            const mat = new THREE.MeshBasicMaterial({
+              map: texture,
+              transparent: true,
+              opacity: fl.opacity,
+              side: THREE.DoubleSide,
+              depthWrite: false,
+              color: 0xffffff,
+              blending: THREE.NormalBlending
+            });
+
+            const mesh = new THREE.Mesh(geom, mat);
+            mesh.frustumCulled = false;
+            flapGroup.add(mesh);
+
+            flapGroups.push({
+              group: flapGroup,
+              phase: wDef.phase + fl.offset
+            });
+          });
+        });
+      });
+    }
+
+    /* =====================================================================
+       MODEL LOAD & NORMALISATION
+       ===================================================================== */
+    let modelLoaded = false;
+    const gltfLoader = new GLTFLoader();
+
+    gltfLoader.load(
+      'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132918_e8364d8f-7df2-4788-a725-dec28ec19af8.glb',
+      (gltf) => {
+        const model = gltf.scene;
+        model.traverse((node) => {
+          if (node.isMesh) {
+            node.frustumCulled = false;
+            if (node.material) {
+              node.material.envMapIntensity = 0.7;
+            }
+          }
+        });
+
+        const holder = new THREE.Group();
+        holder.add(model);
+        model.rotation.set(0, Math.PI / 2, 0);
+
+        let box = new THREE.Box3().setFromObject(holder);
+        const size = new THREE.Vector3();
+        box.getSize(size);
+        const maxDim = Math.max(size.x, size.y, size.z) || 1;
+        model.scale.setScalar(1 / maxDim);
+
+        box.setFromObject(holder);
+        const center = new THREE.Vector3();
+        box.getCenter(center);
+        model.position.sub(center);
+
+        box.setFromObject(holder);
+        beeRoot.add(holder);
+
+        const anchorX = box.min.x + (box.max.x - box.min.x) * 0.66;
+        const anchorY = box.max.y * 0.86;
+        const anchorZ = (box.max.z - box.min.z) * 0.05;
+
+        buildWings(anchorX, anchorY, anchorZ);
+
+        modelLoaded = true;
+        finishLoader();
+        if (beeCanvas) beeCanvas.classList.add('ready');
+      },
+      undefined,
+      (err) => {
+        console.error('Error loading bee GLB:', err);
+        finishLoader();
+      }
+    );
+
+    /* =====================================================================
+       SCROLL-DRIVEN FLIGHT PATH
+       ===================================================================== */
+    const DEFAULT_DESKTOP_KEYS = [
+      { x: -0.03, y: -0.12, s: 1.00, yaw: 150, pitch: 6,  roll: -4 },
+      { x: -0.30, y: -0.04, s: 1.00, yaw: 125, pitch: 10, roll: 6 },
+      { x:  0.22, y: -0.30, s: 1.00, yaw: 40,  pitch: -6, roll: -8 },
+      { x: -0.22, y:  0.02, s: 0.96, yaw: 160, pitch: 8,  roll: 4 },
+      { x:  0.02, y: -0.08, s: 0.92, yaw: 105, pitch: 4,  roll: 0 }
+    ];
+
+    const DEFAULT_MOBILE_KEYS = [
+      { x: 0.05, y: -0.02, s: 0.75, yaw: 150, pitch: 6,  roll: -4 },
+      { x: 0.10, y:  0.12, s: 0.80, yaw: 125, pitch: 10, roll: 6 },
+      { x: 0.15, y: -0.20, s: 0.75, yaw: 40,  pitch: -6, roll: -8 },
+      { x: 0.25, y:  0.20, s: 0.72, yaw: 160, pitch: 8,  roll: 4 },
+      { x: 0.00, y:  0.10, s: 0.70, yaw: 105, pitch: 4,  roll: 0 }
+    ];
+
+    function ease(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function lerpAngle(a, b, t) {
+      const d = ((b - a + 540) % 360) - 180;
+      return a + d * t;
+    }
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function targetAt(rawP) {
+      const deskK = (currentSettings?.beeAnimation?.desktopKeyframes) || DEFAULT_DESKTOP_KEYS;
+      const mobK = (currentSettings?.beeAnimation?.mobileKeyframes) || DEFAULT_MOBILE_KEYS;
+      const K = window.innerWidth < 760 ? mobK : deskK;
+
+      let p = rawP;
+      if (!isFinite(p) || isNaN(p)) p = 0;
+      p = Math.max(0, Math.min(K.length - 1, p));
+      const i = Math.min(K.length - 2, Math.floor(p));
+      const f = p - i;
+      const t = ease(Math.max(0, Math.min(1, (f - 0.12) / 0.76)));
+      const dive = Math.sin(t * Math.PI) * -0.22;
+      const moving = Math.sin(t * Math.PI);
+
+      const k0 = K[i];
+      const k1 = K[i + 1];
+
+      return {
+        x: lerp(k0.x, k1.x, t),
+        y: lerp(k0.y, k1.y, t) + dive,
+        s: lerp(k0.s, k1.s, t) * (1 + Math.sin(t * Math.PI) * 0.12),
+        yaw: lerpAngle(k0.yaw, k1.yaw, t),
+        pitch: lerp(k0.pitch, k1.pitch, t),
+        roll: lerp(k0.roll, k1.roll, t),
+        moving
+      };
+    }
+
+    /* =====================================================================
+       ANIMATION LOOP WITH ACCESSIBILITY & PERFORMANCE GUARDS
+       ===================================================================== */
+    const clock = new THREE.Clock();
+    let cur = { ...targetAt(0) };
+    let prevX = cur.x;
+    let prevY = cur.y;
+
+    const pointer = { targetX: 0, targetY: 0 };
+    const mouse = { sx: 0, sy: 0 };
+
+    window.addEventListener('pointermove', (e) => {
+      pointer.targetX = (e.clientX / window.innerWidth) * 2 - 1;
+      pointer.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      if (document.hidden) return; // Pause rendering when tab is hidden
+
+      const isReduced = prefersReducedMotion.matches && (currentSettings?.beeAnimation?.respectReducedMotion !== false);
+      const isBeeEnabled = currentSettings?.beeAnimation?.enabled !== false;
+
+      if (!isBeeEnabled) {
+        if (beeCanvas) beeCanvas.style.opacity = '0';
+        return;
+      }
+
+      const speedMultiplier = currentSettings?.beeAnimation?.speed || 1.0;
+      const sizeMultiplier = currentSettings?.beeAnimation?.sizeMultiplier || 1.0;
+      const hoverAmount = currentSettings?.beeAnimation?.hoverAmount !== undefined ? currentSettings.beeAnimation.hoverAmount : 1.0;
+
+      const dt = Math.min(clock.getDelta(), 0.05);
+      const t = clock.getElapsedTime() * (isReduced ? 0.3 : speedMultiplier);
+
+      const scrollP = window.scrollY / (window.innerHeight || 1);
+      const target = targetAt(scrollP);
+
+      // Smooth follow
+      const k = 1 - Math.exp(-dt * 3.2 * (isReduced ? 0.5 : 1));
+      cur.x += (target.x - cur.x) * k;
+      cur.y += (target.y - cur.y) * k;
+      cur.s += (target.s - cur.s) * k;
+      cur.pitch += (target.pitch - cur.pitch) * k;
+      cur.roll += (target.roll - cur.roll) * k;
+
+      const kYaw = 1 - Math.exp(-dt * 2.6);
+      cur.yaw = lerpAngle(cur.yaw, target.yaw, kYaw);
+      cur.moving = target.moving;
+
+      const vx = (cur.x - prevX) / (dt || 0.016);
+      const vy = (cur.y - prevY) / (dt || 0.016);
+      prevX = cur.x;
+      prevY = cur.y;
+
+      const kMouse = 1 - Math.exp(-dt * 2);
+      mouse.sx += (pointer.targetX - mouse.sx) * kMouse;
+      mouse.sy += (pointer.targetY - mouse.sy) * kMouse;
+
+      const halfH = Math.tan((camera.fov * Math.PI / 180) / 2) * camera.position.z;
+      const halfW = halfH * camera.aspect;
+      const hover = (Math.sin(t * 2.1) * 0.045 + Math.sin(t * 3.7) * 0.015) * hoverAmount;
+
+      flight.position.set(
+        cur.x * halfW + Math.sin(t * 1.3) * 0.04 + (isReduced ? 0 : mouse.sx * 0.12),
+        cur.y * halfH + hover * halfH * 0.5 + (isReduced ? 0 : mouse.sy * 0.08),
+        Math.sin(t * 0.9) * 0.15
+      );
+
+      const scaleVal = halfH * 2 * 0.30 * cur.s * sizeMultiplier;
+      flight.scale.set(scaleVal, scaleVal, scaleVal);
+      flight.rotation.set(0, -(cur.yaw + (isReduced ? 0 : mouse.sx * 12)) * Math.PI / 180, 0);
+
+      const bankingEnabled = currentSettings?.beeAnimation?.enableBanking !== false && !isReduced;
+      const pitch = (cur.pitch - (bankingEnabled ? Math.max(-28, Math.min(28, vy * 22)) : 0) + Math.sin(t * 2.1 + 1) * 3 + (isReduced ? 0 : mouse.sy * 6)) * Math.PI / 180;
+      const roll = (cur.roll + (bankingEnabled ? Math.max(-30, Math.min(30, vx * 18)) : 0) + Math.sin(t * 1.7) * 4) * Math.PI / 180;
+      beeRoot.rotation.set(roll, 0, pitch, 'YZX');
+
+      // Wing beat
+      const freq = 2 * Math.PI * (17 + (cur.moving || 0) * 5) * (isReduced ? 0.4 : 1);
+      for (let i = 0; i < flapGroups.length; i++) {
+        const flap = flapGroups[i];
+        const a = Math.sin(t * freq + flap.phase);
+        flap.group.rotation.x = -0.25 + a * 0.95;
+        flap.group.rotation.y = a * 0.18;
+      }
+
+      if (modelLoaded) {
+        renderer.render(scene, camera);
+      }
+    }
+
+    animate();
+
+    /* =====================================================================
+       OWNER DASHBOARD CONTROLLER & UI
+       ===================================================================== */
+    const overlay = document.getElementById('login-modal-overlay');
+    const dashboard = document.getElementById('owner-dashboard');
+    const openBtn = document.getElementById('open-owner-btn');
+    const cancelLoginBtn = document.getElementById('cancel-login-btn');
+    const closeDashBtn = document.getElementById('close-dash-btn');
+    const loginForm = document.getElementById('owner-login-form');
+    const keyInput = document.getElementById('owner-key-input');
+    const errorMsg = document.getElementById('login-error-msg');
+
+    // Open Owner Portal (Check auth first)
+    async function openOwnerPortal() {
+      // Check session with backend
+      if (authToken) {
+        try {
+          const res = await fetch('/api/owner/session', {
+            headers: { 'Authorization': `Bearer ${authToken}` }
+          });
+          if (res.ok) {
+            isOwnerAuthenticated = true;
+            showDashboardPanel();
+            return;
+          }
+        } catch {
+          // Token invalid, fall through to login modal
+        }
+      }
+      // Show login modal
+      if (errorMsg) errorMsg.style.display = 'none';
+      if (overlay) overlay.classList.add('active');
+      if (keyInput) {
+        keyInput.value = '';
+        setTimeout(() => keyInput.focus(), 100);
+      }
+    }
+
+    // Show Dashboard Panel
+    function showDashboardPanel() {
+      if (overlay) overlay.classList.remove('active');
+      if (dashboard) dashboard.classList.add('active');
+      populateDashboardFields();
+    }
+
+    function closeDashboardPanel() {
+      if (dashboard) dashboard.classList.remove('active');
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openOwnerPortal);
+    if (cancelLoginBtn) cancelLoginBtn.addEventListener('click', () => overlay.classList.remove('active'));
+    if (closeDashBtn) closeDashBtn.addEventListener('click', closeDashboardPanel);
+
+    // Keyboard shortcut Ctrl+Shift+O / Cmd+Shift+O
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'O' || e.key === 'o')) {
+        e.preventDefault();
+        openOwnerPortal();
+      }
+    });
+
+    // Check URL route for #owner or /owner
+    if (window.location.hash === '#owner' || window.location.pathname === '/owner') {
+      setTimeout(openOwnerPortal, 500);
+    }
+
+    // Login Form Submit
+    if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const key = keyInput.value.trim();
+        if (!key) return;
+
+        try {
+          const res = await fetch('/api/owner/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ownerKey: key })
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            authToken = data.token;
+            localStorage.setItem('mpz_owner_token', authToken);
+            isOwnerAuthenticated = true;
+            showToast('Authenticated as MPZ HUB Owner');
+            showDashboardPanel();
+          } else {
+            errorMsg.textContent = data.error || 'Invalid credentials';
+            errorMsg.style.display = 'block';
+          }
+        } catch {
+          errorMsg.textContent = 'Connection error. Check backend server.';
+          errorMsg.style.display = 'block';
+        }
+      });
+    }
+
+    // Logout
+    const logoutBtn = document.getElementById('btn-logout-owner');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        try {
+          await fetch('/api/owner/logout', { method: 'POST' });
+        } catch {}
+        authToken = null;
+        localStorage.removeItem('mpz_owner_token');
+        isOwnerAuthenticated = false;
+        closeDashboardPanel();
+        showToast('Logged out of Owner Portal');
+      });
+    }
+
+    // Sidebar Tab Switching
+    window.switchTab = function(tabId) {
+      document.querySelectorAll('.dash-nav-item').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-tab') === tabId);
+      });
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.style.display = pane.id === tabId ? 'block' : 'none';
+      });
+    };
+
+    document.querySelectorAll('.dash-nav-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const tab = el.getAttribute('data-tab');
+        if (tab) window.switchTab(tab);
+      });
+    });
+
+    // Populate Dashboard Inputs from currentSettings
+    function populateDashboardFields() {
+      if (!currentSettings) return;
+
+      // Stats
+      document.getElementById('stat-brand').textContent = currentSettings.branding.brandName;
+      document.getElementById('stat-buttons').textContent = `${(currentSettings.buttons || []).length} Configured`;
+      document.getElementById('stat-bee').textContent = currentSettings.beeAnimation.enabled ? 'Active' : 'Disabled';
+
+      // Tab 2: General
+      document.getElementById('inp-hero-line1').value = currentSettings.branding.heroHeadlineLine1 || '';
+      document.getElementById('inp-hero-line2').value = currentSettings.branding.heroHeadlineLine2 || '';
+      document.getElementById('inp-hero-subtext').value = currentSettings.branding.heroSubtext || '';
+      document.getElementById('inp-s1-num').value = currentSettings.branding.s1Number || '01';
+      document.getElementById('inp-s1-title').value = currentSettings.branding.s1Title || '';
+      document.getElementById('inp-s1-copy').value = currentSettings.branding.s1Copy || '';
+      document.getElementById('inp-s2-num').value = currentSettings.branding.s2Number || '02';
+      document.getElementById('inp-s2-title').value = currentSettings.branding.s2Title || '';
+      document.getElementById('inp-s2-copy').value = currentSettings.branding.s2Copy || '';
+      document.getElementById('inp-s3-num').value = currentSettings.branding.s3Number || '03';
+      document.getElementById('inp-s3-title').value = currentSettings.branding.s3Title || '';
+      document.getElementById('inp-s3-copy').value = currentSettings.branding.s3Copy || '';
+
+      // Tab 3: Branding
+      document.getElementById('inp-brand-name').value = currentSettings.branding.brandName || '';
+      document.getElementById('inp-brand-tagline').value = currentSettings.branding.tagline || '';
+      document.getElementById('inp-footer-brand').value = currentSettings.branding.footerBrandName || '';
+      document.getElementById('inp-footer-subbrand').value = currentSettings.branding.footerSubbrand || '';
+      document.getElementById('inp-badge-prefix').value = currentSettings.branding.badgeText || 'Created with';
+      document.getElementById('inp-badge-brand').value = currentSettings.branding.badgeBrand || '';
+
+      // Tab 6: Bee
+      document.getElementById('chk-bee-enabled').checked = currentSettings.beeAnimation.enabled !== false;
+      document.getElementById('chk-bee-reduced-motion').checked = currentSettings.beeAnimation.respectReducedMotion !== false;
+      document.getElementById('chk-bee-banking').checked = currentSettings.beeAnimation.enableBanking !== false;
+      document.getElementById('rng-bee-speed').value = currentSettings.beeAnimation.speed || 1.0;
+      document.getElementById('val-bee-speed').textContent = `${(currentSettings.beeAnimation.speed || 1.0).toFixed(1)}x`;
+      document.getElementById('rng-bee-size').value = currentSettings.beeAnimation.sizeMultiplier || 1.0;
+      document.getElementById('val-bee-size').textContent = `${(currentSettings.beeAnimation.sizeMultiplier || 1.0).toFixed(2)}x`;
+      document.getElementById('rng-bee-hover').value = currentSettings.beeAnimation.hoverAmount !== undefined ? currentSettings.beeAnimation.hoverAmount : 1.0;
+      document.getElementById('val-bee-hover').textContent = `${(currentSettings.beeAnimation.hoverAmount || 1.0).toFixed(1)}x`;
+
+      // Tab 7: Typography
+      if (document.getElementById('sel-font-family')) {
+        document.getElementById('sel-font-family').value = currentSettings.typography.fontFamily || 'Poppins, system-ui, sans-serif';
+      }
+
+      // Tab 9: Contact
+      document.getElementById('inp-contact-email').value = currentSettings.contact.email || '';
+      document.getElementById('inp-contact-phone').value = currentSettings.contact.phone || '';
+      document.getElementById('inp-contact-support').value = currentSettings.contact.supportText || '';
+      document.getElementById('inp-contact-copyright').value = currentSettings.contact.copyrightText || '';
+
+      // Tab 10: Colors
+      document.getElementById('col-violet').value = currentSettings.theme.violet || '#5b3bd1';
+      document.getElementById('col-lilac').value = currentSettings.theme.lilac || '#e7e3fb';
+      document.getElementById('col-ink').value = currentSettings.theme.ink || '#0d0b1a';
+
+      renderButtonsManager();
+      renderImagesManager();
+      renderSocialManager();
+    }
+
+    // Render Buttons Manager
+    function renderButtonsManager() {
+      const container = document.getElementById('buttons-list-container');
+      if (!container || !currentSettings) return;
+      container.innerHTML = '';
+
+      currentSettings.buttons.forEach((btn, idx) => {
+        const card = document.createElement('div');
+        card.className = 'dash-card';
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:700; color:#c4b5fd;">#${idx + 1}</span>
+              <strong style="font-size:15px;">${btn.label}</strong>
+              <span style="font-size:11px; padding:2px 8px; border-radius:12px; background:rgba(255,255,255,0.08);">${btn.placement}</span>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="btn-ghost" style="padding:4px 8px; font-size:12px;" onclick="duplicateBtn(${idx})">Duplicate</button>
+              <button class="btn-ghost" style="padding:4px 8px; font-size:12px; color:#f87171;" onclick="deleteBtn(${idx})">Delete</button>
+            </div>
+          </div>
+          <div class="grid-3">
+            <div class="form-group">
+              <label class="form-label">Button Label</label>
+              <input type="text" class="form-input" value="${btn.label}" onchange="updateBtnProp(${idx}, 'label', this.value)" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Destination URL</label>
+              <input type="text" class="form-input" value="${btn.url}" onchange="updateBtnProp(${idx}, 'url', this.value)" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Placement Target</label>
+              <select class="form-select" onchange="updateBtnProp(${idx}, 'placement', this.value)">
+                <option value="hero" ${btn.placement === 'hero' ? 'selected' : ''}>Hero Section</option>
+                <option value="nav" ${btn.placement === 'nav' ? 'selected' : ''}>Navigation Links</option>
+                <option value="navCta" ${btn.placement === 'navCta' ? 'selected' : ''}>Navigation CTA</option>
+                <option value="footer" ${btn.placement === 'footer' ? 'selected' : ''}>Footer Section</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-3">
+            <div class="form-group">
+              <label class="form-label">Open In</label>
+              <select class="form-select" onchange="updateBtnProp(${idx}, 'target', this.value)">
+                <option value="_self" ${btn.target === '_self' ? 'selected' : ''}>Same Tab (_self)</option>
+                <option value="_blank" ${btn.target === '_blank' ? 'selected' : ''}>New Tab (_blank)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Corner Radius (px)</label>
+              <input type="number" class="form-input" value="${btn.style?.borderRadius || 10}" onchange="updateBtnStyle(${idx}, 'borderRadius', parseInt(this.value))" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Enabled</label>
+              <select class="form-select" onchange="updateBtnProp(${idx}, 'enabled', this.value === 'true')">
+                <option value="true" ${btn.enabled ? 'selected' : ''}>Active / Enabled</option>
+                <option value="false" ${!btn.enabled ? 'selected' : ''}>Disabled / Hidden</option>
+              </select>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    window.updateBtnProp = (idx, prop, val) => {
+      if (currentSettings?.buttons?.[idx]) {
+        currentSettings.buttons[idx][prop] = val;
+        applySettingsToDom(currentSettings);
+      }
+    };
+
+    window.updateBtnStyle = (idx, prop, val) => {
+      if (currentSettings?.buttons?.[idx]) {
+        if (!currentSettings.buttons[idx].style) currentSettings.buttons[idx].style = {};
+        currentSettings.buttons[idx].style[prop] = val;
+        applySettingsToDom(currentSettings);
+      }
+    };
+
+    window.duplicateBtn = (idx) => {
+      const src = currentSettings.buttons[idx];
+      const dup = JSON.parse(JSON.stringify(src));
+      dup.id = `btn-${Date.now()}`;
+      dup.label = `${src.label} (Copy)`;
+      currentSettings.buttons.push(dup);
+      renderButtonsManager();
+      applySettingsToDom(currentSettings);
+      showToast('Button duplicated');
+    };
+
+    window.deleteBtn = (idx) => {
+      if (confirm('Are you sure you want to delete this button?')) {
+        currentSettings.buttons.splice(idx, 1);
+        renderButtonsManager();
+        applySettingsToDom(currentSettings);
+        showToast('Button removed');
+      }
+    };
+
+    const addBtnEl = document.getElementById('add-new-btn');
+    if (addBtnEl) {
+      addBtnEl.addEventListener('click', () => {
+        const newBtn = {
+          id: `btn-${Date.now()}`,
+          label: 'New Button',
+          url: '#about',
+          enabled: true,
+          target: '_self',
+          internal: true,
+          icon: 'none',
+          placement: 'hero',
+          style: {
+            backgroundColor: 'transparent',
+            textColor: '#0d0b1a',
+            hoverColor: '#5b3bd1',
+            borderColor: 'currentColor',
+            borderWidth: 1.8,
+            borderRadius: 10,
+            fontSize: 16,
+            fontWeight: 600,
+            paddingX: 18,
+            paddingY: 10,
+            shadow: 'none'
+          }
+        };
+        currentSettings.buttons.push(newBtn);
+        renderButtonsManager();
+        applySettingsToDom(currentSettings);
+        showToast('New button added to hero');
+      });
+    }
+
+    // Render Images Manager
+    function renderImagesManager() {
+      const container = document.getElementById('images-list-container');
+      if (!container || !currentSettings?.images) return;
+      container.innerHTML = '';
+
+      Object.entries(currentSettings.images).forEach(([key, img]) => {
+        const card = document.createElement('div');
+        card.className = 'dash-card';
+        card.innerHTML = `
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:80px; height:80px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0;">
+              <img src="${img.url}" alt="${img.alt}" style="max-width:100%; max-height:100%; object-fit:contain;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><text y=%2224%22 x=%228%22 fill=%22%23999%22>404</text></svg>'"/>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:16px; font-weight:600; margin-bottom:4px;">${img.name}</div>
+              <div style="font-size:12px; color:#8e89ad; margin-bottom:12px;">Asset ID: ${img.id}</div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label class="form-label">Image Source URL</label>
+                  <input type="text" class="form-input" value="${img.url}" onchange="updateImageProp('${key}', 'url', this.value)" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Alternative Text (Accessibility)</label>
+                  <input type="text" class="form-input" value="${img.alt}" onchange="updateImageProp('${key}', 'alt', this.value)" />
+                </div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <label class="btn-ghost" style="padding:6px 12px; font-size:12px; cursor:pointer;">
+                  Upload Replacement
+                  <input type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" style="display:none;" onchange="handleImageUpload('${key}', this.files[0])" />
+                </label>
+                <button class="btn-ghost" style="padding:6px 12px; font-size:12px;" onclick="toggleImageVis('${key}')">${img.visible !== false ? 'Hide from Page' : 'Show on Page'}</button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    window.updateImageProp = (key, prop, val) => {
+      if (currentSettings?.images?.[key]) {
+        currentSettings.images[key][prop] = val;
+        applySettingsToDom(currentSettings);
+      }
+    };
+
+    window.toggleImageVis = (key) => {
+      if (currentSettings?.images?.[key]) {
+        currentSettings.images[key].visible = currentSettings.images[key].visible === false ? true : false;
+        renderImagesManager();
+        applySettingsToDom(currentSettings);
+        showToast(`Image visibility updated`);
+      }
+    };
+
+    window.handleImageUpload = async (key, file) => {
+      if (!file) return;
+      if (file.size > 8 * 1024 * 1024) {
+        alert('File size exceeds 8MB limit.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          const res = await fetch('/api/owner/images/upload', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authToken}`
+            },
+            body: JSON.stringify({
+              base64Data: reader.result,
+              filename: file.name,
+              contentType: file.type
+            })
+          });
+          const data = await res.json();
+          if (res.ok && data.url) {
+            currentSettings.images[key].url = data.url;
+            renderImagesManager();
+            applySettingsToDom(currentSettings);
+            showToast('Replacement image uploaded and applied');
+          } else {
+            alert(data.error || 'Upload failed');
+          }
+        } catch (err) {
+          alert('Upload network error: ' + err.message);
+        }
+      };
+      reader.readAsDataURL(file);
+    };
+
+    // Render Social Manager
+    function renderSocialManager() {
+      const container = document.getElementById('social-links-editor');
+      if (!container || !currentSettings?.social) return;
+      container.innerHTML = '';
+
+      currentSettings.social.forEach((soc, idx) => {
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex; gap:12px; align-items:center; margin-bottom:10px;';
+        row.innerHTML = `
+          <strong style="width:100px; font-size:13.5px;">${soc.platform}</strong>
+          <input type="text" class="form-input" style="flex:1;" value="${soc.url}" onchange="currentSettings.social[${idx}].url = this.value" />
+          <label class="switch" style="flex-shrink:0;">
+            <input type="checkbox" ${soc.enabled ? 'checked' : ''} onchange="currentSettings.social[${idx}].enabled = this.checked" />
+            <span class="slider"></span>
+          </label>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    // Capture settings from Form inputs before saving
+    function collectInputsIntoSettings() {
+      if (!currentSettings) return;
+
+      // General
+      currentSettings.branding.heroHeadlineLine1 = document.getElementById('inp-hero-line1').value;
+      currentSettings.branding.heroHeadlineLine2 = document.getElementById('inp-hero-line2').value;
+      currentSettings.branding.heroSubtext = document.getElementById('inp-hero-subtext').value;
+      currentSettings.branding.s1Number = document.getElementById('inp-s1-num').value;
+      currentSettings.branding.s1Title = document.getElementById('inp-s1-title').value;
+      currentSettings.branding.s1Copy = document.getElementById('inp-s1-copy').value;
+      currentSettings.branding.s2Number = document.getElementById('inp-s2-num').value;
+      currentSettings.branding.s2Title = document.getElementById('inp-s2-title').value;
+      currentSettings.branding.s2Copy = document.getElementById('inp-s2-copy').value;
+      currentSettings.branding.s3Number = document.getElementById('inp-s3-num').value;
+      currentSettings.branding.s3Title = document.getElementById('inp-s3-title').value;
+      currentSettings.branding.s3Copy = document.getElementById('inp-s3-copy').value;
+
+      // Branding
+      currentSettings.branding.brandName = document.getElementById('inp-brand-name').value;
+      currentSettings.branding.tagline = document.getElementById('inp-brand-tagline').value;
+      currentSettings.branding.footerBrandName = document.getElementById('inp-footer-brand').value;
+      currentSettings.branding.footerSubbrand = document.getElementById('inp-footer-subbrand').value;
+      currentSettings.branding.badgeText = document.getElementById('inp-badge-prefix').value;
+      currentSettings.branding.badgeBrand = document.getElementById('inp-badge-brand').value;
+
+      // Bee
+      currentSettings.beeAnimation.enabled = document.getElementById('chk-bee-enabled').checked;
+      currentSettings.beeAnimation.respectReducedMotion = document.getElementById('chk-bee-reduced-motion').checked;
+      currentSettings.beeAnimation.enableBanking = document.getElementById('chk-bee-banking').checked;
+      currentSettings.beeAnimation.speed = parseFloat(document.getElementById('rng-bee-speed').value);
+      currentSettings.beeAnimation.sizeMultiplier = parseFloat(document.getElementById('rng-bee-size').value);
+      currentSettings.beeAnimation.hoverAmount = parseFloat(document.getElementById('rng-bee-hover').value);
+
+      // Contact
+      currentSettings.contact.email = document.getElementById('inp-contact-email').value;
+      currentSettings.contact.phone = document.getElementById('inp-contact-phone').value;
+      currentSettings.contact.supportText = document.getElementById('inp-contact-support').value;
+      currentSettings.contact.copyrightText = document.getElementById('inp-contact-copyright').value;
+
+      // Theme
+      currentSettings.theme.violet = document.getElementById('col-violet').value;
+      currentSettings.theme.lilac = document.getElementById('col-lilac').value;
+      currentSettings.theme.ink = document.getElementById('col-ink').value;
+    }
+
+    // Save Draft
+    async function saveDraft() {
+      collectInputsIntoSettings();
+      try {
+        const res = await fetch('/api/owner/settings/draft', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify(currentSettings)
+        });
+        const data = await res.json();
+        if (res.ok) {
+          currentSettings = data.settings;
+          applySettingsToDom(currentSettings);
+          const pill = document.getElementById('dash-version-pill');
+          if (pill) {
+            pill.textContent = 'Draft Unsaved to Live';
+            pill.classList.add('draft');
+          }
+          showToast('Draft settings saved to server');
+        } else {
+          alert(data.error || 'Failed to save draft');
+        }
+      } catch (err) {
+        alert('Network error saving draft: ' + err.message);
+      }
+    }
+
+    // Publish
+    async function publishSettings() {
+      collectInputsIntoSettings();
+      // First save draft then publish
+      await saveDraft();
+      try {
+        const res = await fetch('/api/owner/settings/publish', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          }
+        });
+        const data = await res.json();
+        if (res.ok) {
+          currentSettings = data.settings;
+          applySettingsToDom(currentSettings);
+          const pill = document.getElementById('dash-version-pill');
+          if (pill) {
+            pill.textContent = `Published v${currentSettings.version || 1}`;
+            pill.classList.remove('draft');
+          }
+          showToast('All changes successfully published live to MPZ HUB!');
+        } else {
+          alert(data.error || 'Failed to publish settings');
+        }
+      } catch (err) {
+        alert('Network error publishing settings: ' + err.message);
+      }
+    }
+
+    // Reset Factory
+    async function resetFactory() {
+      if (!confirm('Are you sure you want to restore all original factory settings for MPZ HUB?')) return;
+      try {
+        const res = await fetch('/api/owner/settings/reset', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const data = await res.json();
+        if (res.ok) {
+          currentSettings = data.settings;
+          applySettingsToDom(currentSettings);
+          populateDashboardFields();
+          showToast('Restored factory defaults');
+        }
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    }
+
+    // Hook up buttons
+    document.getElementById('save-draft-btn')?.addEventListener('click', saveDraft);
+    document.getElementById('btn-save-draft-tab')?.addEventListener('click', saveDraft);
+    document.getElementById('publish-btn')?.addEventListener('click', publishSettings);
+    document.getElementById('btn-publish-final')?.addEventListener('click', publishSettings);
+    document.getElementById('btn-reset-factory')?.addEventListener('click', resetFactory);
+
+    // Live slider listeners for immediate visual feedback
+    const speedRng = document.getElementById('rng-bee-speed');
+    if (speedRng) {
+      speedRng.addEventListener('input', (e) => {
+        document.getElementById('val-bee-speed').textContent = `${parseFloat(e.target.value).toFixed(1)}x`;
+        if (currentSettings?.beeAnimation) currentSettings.beeAnimation.speed = parseFloat(e.target.value);
+      });
+    }
+
+    const sizeRng = document.getElementById('rng-bee-size');
+    if (sizeRng) {
+      sizeRng.addEventListener('input', (e) => {
+        document.getElementById('val-bee-size').textContent = `${parseFloat(e.target.value).toFixed(2)}x`;
+        if (currentSettings?.beeAnimation) currentSettings.beeAnimation.sizeMultiplier = parseFloat(e.target.value);
+      });
+    }
+
+    const hoverRng = document.getElementById('rng-bee-hover');
+    if (hoverRng) {
+      hoverRng.addEventListener('input', (e) => {
+        document.getElementById('val-bee-hover').textContent = `${parseFloat(e.target.value).toFixed(1)}x`;
+        if (currentSettings?.beeAnimation) currentSettings.beeAnimation.hoverAmount = parseFloat(e.target.value);
+      });
+    }
+
+    // Live color picker feedback
+    ['col-violet', 'col-lilac', 'col-ink'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => {
+          collectInputsIntoSettings();
+          applySettingsToDom(currentSettings);
+        });
+      }
+    });
+
+    // Initial load
+    loadSiteSettings();
+  </script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+{
+  "published": {
+    "version": 1,
+    "lastUpdated": "2026-10-22T08:00:00.000Z",
+    "branding": {
+      "brandName": "MPZ HUB",
+      "tagline": "A 3D motion academy & creative digital studio",
+      "heroHeadlineLine1": "Imagine your next site",
+      "heroHeadlineLine2": "built just like this",
+      "heroSubtext": "Master 3D animation in just three days with our newest program",
+      "s1Number": "01",
+      "s1Title": "Explore this\nUniverse of\n3D Motion",
+      "s1Copy": "Every lesson is crafted by studio veterans to equip you with the newest methods and software in 3D animation. Whether you're just starting or already a pro, our program will sharpen your skills fast.",
+      "s2Number": "02",
+      "s2Title": "Claim Early\nInvite",
+      "s2Copy": "Get early entry to our all-new 3D animation lessons! Add your name to the waitlist and you'll be first to enroll with VIP pricing.",
+      "s3Number": "03",
+      "s3Title": "Study and\nBuild with Us!",
+      "s3Copy": "Become part of a lively hive of artists. Ship real work, get notes from expert mentors and see your concepts come alive in vivid 3D depth.",
+      "footerHeading": "Prepared to fly high?",
+      "footerBrandName": "MPZ HUB",
+      "footerSubbrand": "A 3D motion academy",
+      "badgeText": "Created with",
+      "badgeBrand": "MPZ HUB",
+      "showLogoMark": true
+    },
+    "buttons": [
+      {
+        "id": "btn-buzz-hero",
+        "label": "Buzz in!",
+        "url": "#access",
+        "enabled": true,
+        "target": "_self",
+        "internal": true,
+        "icon": "chevron",
+        "placement": "hero",
+        "style": {
+          "backgroundColor": "transparent",
+          "textColor": "#0d0b1a",
+          "hoverColor": "#5b3bd1",
+          "borderColor": "currentColor",
+          "borderWidth": 1.8,
+          "borderRadius": 10,
+          "fontSize": 17,
+          "fontWeight": 600,
+          "paddingX": 18,
+          "paddingY": 10,
+          "shadow": "none"
+        }
+      },
+      {
+        "id": "btn-inside-class",
+        "label": "Inside the class",
+        "url": "#about",
+        "enabled": true,
+        "target": "_self",
+        "internal": true,
+        "icon": "none",
+        "placement": "nav",
+        "style": {
+          "backgroundColor": "transparent",
+          "textColor": "inherit",
+          "hoverColor": "#5b3bd1",
+          "borderColor": "transparent",
+          "borderWidth": 0,
+          "borderRadius": 0,
+          "fontSize": 15.5,
+          "fontWeight": 400,
+          "paddingX": 0,
+          "paddingY": 0,
+          "shadow": "none"
+        }
+      },
+      {
+        "id": "btn-ping-us",
+        "label": "Ping us",
+        "url": "#contact",
+        "enabled": true,
+        "target": "_self",
+        "internal": true,
+        "icon": "none",
+        "placement": "nav",
+        "style": {
+          "backgroundColor": "transparent",
+          "textColor": "inherit",
+          "hoverColor": "#5b3bd1",
+          "borderColor": "transparent",
+          "borderWidth": 0,
+          "borderRadius": 0,
+          "fontSize": 15.5,
+          "fontWeight": 400,
+          "paddingX": 0,
+          "paddingY": 0,
+          "shadow": "none"
+        }
+      },
+      {
+        "id": "btn-nav-cta",
+        "label": "Buzz in!",
+        "url": "#access",
+        "enabled": true,
+        "target": "_self",
+        "internal": true,
+        "icon": "none",
+        "placement": "navCta",
+        "style": {
+          "backgroundColor": "transparent",
+          "textColor": "inherit",
+          "hoverColor": "#5b3bd1",
+          "borderColor": "transparent",
+          "borderWidth": 0,
+          "borderRadius": 0,
+          "fontSize": 16,
+          "fontWeight": 600,
+          "paddingX": 0,
+          "paddingY": 0,
+          "shadow": "none"
+        }
+      },
+      {
+        "id": "btn-foot-cta",
+        "label": "Buzz in!",
+        "url": "#access",
+        "enabled": true,
+        "target": "_self",
+        "internal": true,
+        "icon": "chevron",
+        "placement": "footer",
+        "style": {
+          "backgroundColor": "transparent",
+          "textColor": "#0d0b1a",
+          "hoverColor": "#5b3bd1",
+          "borderColor": "currentColor",
+          "borderWidth": 1.8,
+          "borderRadius": 10,
+          "fontSize": 17,
+          "fontWeight": 600,
+          "paddingX": 18,
+          "paddingY": 10,
+          "shadow": "none"
+        }
+      }
+    ],
+    "images": {
+      "heroBg": {
+        "id": "heroBg",
+        "name": "Hero Background Bokeh",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261016_130303_301c35dd-e2d1-4b40-a396-2b53f884d787.png",
+        "alt": "Soft lavender bokeh abstract background",
+        "visible": true,
+        "fit": "cover",
+        "opacity": 1,
+        "scale": 1
+      },
+      "cosmos": {
+        "id": "cosmos",
+        "name": "Purple Cosmos (Hero)",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132919_c994332b-7f9d-43b5-933d-1e94faa91dd4.png",
+        "alt": "Dewy purple cosmos blossom",
+        "visible": true,
+        "fit": "contain",
+        "opacity": 1,
+        "scale": 1
+      },
+      "hangingCosmos": {
+        "id": "hangingCosmos",
+        "name": "Hanging Cosmos (Section 01)",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132924_764b726d-d37a-44cc-8eba-662d823d9a4c.png",
+        "alt": "Hanging upside-down cosmos flower",
+        "visible": true,
+        "fit": "contain",
+        "opacity": 1,
+        "scale": 1
+      },
+      "s2Bg": {
+        "id": "s2Bg",
+        "name": "Section 02 Dark Bokeh Background",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132814_c3d2b090-c27d-49d1-8107-66d0cfa216c2.png",
+        "alt": "Deep violet macro bokeh background",
+        "visible": true,
+        "fit": "cover",
+        "opacity": 1,
+        "scale": 1
+      },
+      "irisPetal": {
+        "id": "irisPetal",
+        "name": "Iris Petal (Section 02)",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132926_a7892ae5-8052-4e4b-96a8-ccbdcaaaa5ad.png",
+        "alt": "Vibrant velvet iris petal with dewdrops",
+        "visible": true,
+        "fit": "contain",
+        "opacity": 1,
+        "scale": 1
+      },
+      "passionFlower": {
+        "id": "passionFlower",
+        "name": "Passion Flower (Section 03)",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132921_d71538ea-5066-4372-963a-2f2d6468374f.png",
+        "alt": "Exotic blooming passion flower with radial filaments",
+        "visible": true,
+        "fit": "contain",
+        "opacity": 1,
+        "scale": 1
+      },
+      "beeModel": {
+        "id": "beeModel",
+        "name": "3D Honeybee GLB Model",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132918_e8364d8f-7df2-4788-a725-dec28ec19af8.glb",
+        "alt": "3D bumblebee body mesh",
+        "visible": true,
+        "fit": "contain",
+        "opacity": 1,
+        "scale": 1
+      },
+      "wingTexture": {
+        "id": "wingTexture",
+        "name": "Bee Wing Texture",
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261017_132814_3a56ac14-47d8-4e49-a163-94234dea5639.png",
+        "alt": "Veined iridescent bee wing texture",
+        "visible": true,
+        "fit": "contain",
+        "opacity": 1,
+        "scale": 1
+      }
+    },
+    "beeAnimation": {
+      "enabled": true,
+      "speed": 1.0,
+      "sizeMultiplier": 1.0,
+      "hoverAmount": 1.0,
+      "enableBanking": true,
+      "delay": 0,
+      "repeat": true,
+      "respectReducedMotion": true,
+      "desktopKeyframes": [
+        { "x": -0.03, "y": -0.12, "s": 1.00, "yaw": 150, "pitch": 6, "roll": -4 },
+        { "x": -0.30, "y": -0.04, "s": 1.00, "yaw": 125, "pitch": 10, "roll": 6 },
+        { "x": 0.22, "y": -0.30, "s": 1.00, "yaw": 40, "pitch": -6, "roll": -8 },
+        { "x": -0.22, "y": 0.02, "s": 0.96, "yaw": 160, "pitch": 8, "roll": 4 },
+        { "x": 0.02, "y": -0.08, "s": 0.92, "yaw": 105, "pitch": 4, "roll": 0 }
+      ],
+      "mobileKeyframes": [
+        { "x": 0.05, "y": -0.02, "s": 0.75, "yaw": 150, "pitch": 6, "roll": -4 },
+        { "x": 0.10, "y": 0.12, "s": 0.80, "yaw": 125, "pitch": 10, "roll": 6 },
+        { "x": 0.15, "y": -0.20, "s": 0.75, "yaw": 40, "pitch": -6, "roll": -8 },
+        { "x": 0.25, "y": 0.20, "s": 0.72, "yaw": 160, "pitch": 8, "roll": 4 },
+        { "x": 0.00, "y": 0.10, "s": 0.70, "yaw": 105, "pitch": 4, "roll": 0 }
+      ]
+    },
+    "typography": {
+      "fontFamily": "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      "headingFontFamily": "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      "headlineWeight": 800,
+      "titleWeight": 700,
+      "bodyWeight": 400,
+      "letterSpacing": "-0.035em"
+    },
+    "theme": {
+      "ink": "#0d0b1a",
+      "muted": "#4a4568",
+      "lilac": "#e7e3fb",
+      "num": "#cfc6f6",
+      "numDark": "rgba(214,203,255,0.55)",
+      "violet": "#5b3bd1",
+      "heroBgColor": "#e4e0fa",
+      "s1GradientStart": "#e4e0fa",
+      "s1GradientEnd": "#ece9fc",
+      "s2BgColor": "#3a1f8c",
+      "s3GradientStart": "#ece9fc",
+      "s3GradientEnd": "#e7e3fb",
+      "footBgColor": "#e7e3fb"
+    },
+    "social": [
+      { "id": "yt", "platform": "YouTube", "label": "YouTube", "url": "https://youtube.com/@mpzhub", "enabled": true, "order": 1 },
+      { "id": "li", "platform": "LinkedIn", "label": "LinkedIn", "url": "https://linkedin.com/company/mpzhub", "enabled": true, "order": 2 },
+      { "id": "ig", "platform": "Instagram", "label": "Instagram", "url": "https://instagram.com/mpzhub", "enabled": true, "order": 3 },
+      { "id": "fb", "platform": "Facebook", "label": "Facebook", "url": "https://facebook.com/mpzhub", "enabled": true, "order": 4 },
+      { "id": "db", "platform": "Dribbble", "label": "Dribbble", "url": "https://dribbble.com/mpzhub", "enabled": true, "order": 5 }
+    ],
+    "contact": {
+      "email": "contact@mpzhub.com",
+      "phone": "+1 (800) 555-0199",
+      "supportText": "Need custom 3D motion design for your brand? Reach out to our studio team.",
+      "copyrightText": "© 2026 MPZ HUB. All rights reserved.",
+      "showEmail": true,
+      "showPhone": false
+    }
+  },
+  "draft": null
+}
