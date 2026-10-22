@@ -542,18 +542,499 @@
       to { transform: rotate(360deg); }
     }
 
-    /* MOBILE */
-    @media (max-width: 760px) {
-      .nav__links { display: none; }
-      .hero h1 { top: 14vh; }
-      .hero__side { top: auto; bottom: 14vh; right: 18px; width: 70vw; }
-      .hero .flower--cosmos { width: 110vw; left: -38vw; bottom: -55vw; }
-      .s1 .num { top: 16vh; left: auto; right: 6vw; }
-      .s1 .text, .s3 .text { left: 18px; right: 18px; width: auto; top: auto; bottom: 10vh; }
-      .s2 .text { left: 18px; right: 18px; width: auto; top: 14vh; }
-      .s3 .flower--passion { width: 90vw; }
-      .foot .cols { right: 18px; bottom: 150px; gap: 30px; }
-      .foot .brand { bottom: 150px; }
+    /* =====================================================================
+       RESPONSIVE DESIGN & MOBILE LAYOUT SYSTEM
+       ===================================================================== */
+
+    /* Universal responsive defaults for media */
+    img, svg, canvas:not(#bee) {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Stacking context and readability protection */
+    .hero h1, .hero__side, .s1 .text, .s2 .text, .s3 .text, .foot .cta, .foot .brand, .foot .cols {
+      z-index: 4;
+      position: relative;
+    }
+
+    /* Tablet and Medium Screens (<= 1024px) */
+    @media (max-width: 1024px) {
+      :root {
+        --pad: clamp(16px, 3.5vw, 36px);
+      }
+      .hero h1 {
+        top: 14vh;
+        font-size: clamp(38px, 6.5vw, 84px);
+      }
+      .hero__side {
+        top: auto;
+        bottom: 12vh;
+        right: var(--pad);
+        width: min(320px, 45vw);
+      }
+      .hero .flower--cosmos {
+        width: clamp(340px, 58vw, 760px);
+        left: -12vw;
+        bottom: -18vw;
+      }
+      .s1 .num, .s3 .num {
+        font-size: clamp(80px, 14vw, 180px);
+      }
+      .s1 .text {
+        left: 45vw;
+        top: 38vh;
+        width: min(480px, 50vw);
+      }
+      .s2 .text {
+        left: var(--pad);
+        top: 18vh;
+        width: min(480px, 52vw);
+      }
+      .s3 .text {
+        left: 48vw;
+        top: 24vh;
+        width: min(480px, 48vw);
+      }
+      .s1 .flower--hang {
+        width: clamp(300px, 40vw, 600px);
+        left: -7vw;
+        top: -10vw;
+      }
+      .s2 .flower--iris {
+        width: clamp(300px, 42vw, 620px);
+        right: -6vw;
+        bottom: -15vw;
+      }
+      .s3 .flower--passion {
+        width: clamp(280px, 38vw, 560px);
+        left: -8vw;
+        top: 5vh;
+      }
+      .foot .cols {
+        right: calc(var(--pad) + 90px);
+        gap: 40px;
+      }
+    }
+
+    /* Mobile Screens (<= 768px) */
+    @media (max-width: 768px) {
+      :root {
+        --pad: clamp(16px, 4vw, 24px);
+      }
+
+      /* Navigation */
+      .nav {
+        padding: 12px var(--pad) 0;
+      }
+      .nav__links {
+        display: none;
+      }
+      .logo {
+        gap: 8px;
+        font-size: 17px;
+        margin-right: auto;
+      }
+      .logo svg {
+        width: 32px;
+        height: 32px;
+      }
+      .nav__cta-wrap {
+        margin-left: auto;
+        gap: 10px;
+        padding-right: 0;
+      }
+      .owner-trigger-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+      .nav__cta {
+        font-size: 14.5px;
+      }
+
+      /* Sections & Layout */
+      section {
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Typography adjustments */
+      .title {
+        font-size: clamp(26px, 7vw, 42px);
+        line-height: 1.15;
+      }
+      .copy {
+        font-size: clamp(13px, 3.8vw, 15.5px);
+        line-height: 1.55;
+        margin-top: 14px;
+        max-width: 100%;
+      }
+
+      /* Hero Section */
+      .hero h1 {
+        top: 13vh;
+        font-size: clamp(34px, 8.5vw, 62px);
+        line-height: 1.08;
+        padding: 0 var(--pad);
+      }
+      .hero__side {
+        position: absolute;
+        top: auto;
+        bottom: 11vh;
+        right: var(--pad);
+        left: auto;
+        width: min(320px, calc(100vw - (var(--pad) * 2)));
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      .hero__side p {
+        font-size: clamp(14px, 4vw, 18px);
+        line-height: 1.35;
+        max-width: 280px;
+      }
+      .hero .join {
+        margin-top: 20px;
+      }
+      .hero .flower--cosmos {
+        width: clamp(240px, 72vw, 420px);
+        max-height: 48vh;
+        object-fit: contain;
+        left: -14vw;
+        bottom: -15vw;
+        filter: drop-shadow(0 15px 25px rgba(80,50,160,.14));
+        z-index: 1;
+      }
+
+      /* Section 01 */
+      .s1 .num {
+        position: absolute;
+        top: 12vh;
+        right: var(--pad);
+        left: auto;
+        font-size: clamp(70px, 18vw, 120px);
+        z-index: 2;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .s1 .flower--hang {
+        width: clamp(190px, 48vw, 320px);
+        max-height: 46vh;
+        object-fit: contain;
+        left: -6vw;
+        top: -6vw;
+        z-index: 1;
+        opacity: 0.9;
+      }
+      .s1 .text {
+        position: absolute;
+        left: var(--pad);
+        right: var(--pad);
+        width: auto;
+        max-width: calc(100vw - (var(--pad) * 2));
+        top: auto;
+        bottom: 8vh;
+        z-index: 4;
+      }
+
+      /* Section 02 (Dark) */
+      .s2 .num {
+        font-size: clamp(70px, 18vw, 120px);
+        opacity: 0.6;
+        position: relative;
+        margin-bottom: -10px;
+      }
+      .s2 .text {
+        position: absolute;
+        left: var(--pad);
+        right: var(--pad);
+        width: auto;
+        max-width: calc(100vw - (var(--pad) * 2));
+        top: 12vh;
+        z-index: 4;
+      }
+      .s2 .title {
+        margin-top: 10px;
+      }
+      .s2 .copy {
+        max-width: 90%;
+      }
+      .s2 .flower--iris {
+        width: clamp(220px, 58vw, 360px);
+        max-height: 48vh;
+        object-fit: contain;
+        right: -8vw;
+        bottom: -10vw;
+        z-index: 1;
+        filter: drop-shadow(0 20px 30px rgba(20,0,60,.35));
+        opacity: 0.85;
+      }
+
+      /* Section 03 */
+      .s3 .num {
+        position: absolute;
+        top: 12vh;
+        right: var(--pad);
+        left: auto;
+        font-size: clamp(70px, 18vw, 120px);
+        z-index: 2;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .s3 .flower--passion {
+        width: clamp(200px, 52vw, 330px);
+        max-height: 46vh;
+        object-fit: contain;
+        left: -10vw;
+        top: 4vh;
+        z-index: 1;
+        opacity: 0.88;
+      }
+      .s3 .text {
+        position: absolute;
+        left: var(--pad);
+        right: var(--pad);
+        width: auto;
+        max-width: calc(100vw - (var(--pad) * 2));
+        top: auto;
+        bottom: 8vh;
+        z-index: 4;
+      }
+      .s3 .title {
+        margin-top: 10px;
+      }
+
+      /* Footer */
+      .foot {
+        height: 100vh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 13vh var(--pad) 70px;
+        box-sizing: border-box;
+      }
+      .foot .cta {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: auto;
+        text-align: center;
+      }
+      .foot .cta .title {
+        font-size: clamp(28px, 7.2vw, 44px);
+      }
+      .foot .brand {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-bottom: 24px;
+      }
+      .foot .brand strong {
+        font-size: clamp(24px, 6.2vw, 34px);
+      }
+      .foot .cols {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        display: flex;
+        gap: 36px;
+        font-size: 13.5px;
+      }
+
+      /* Badge */
+      .badge {
+        bottom: 14px;
+        right: 14px;
+        font-size: 11px;
+        padding: 4px 10px;
+        gap: 6px;
+      }
+      .badge svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      /* Owner Dashboard on mobile */
+      .dashboard-panel {
+        inset: 6px;
+        border-radius: 16px;
+      }
+      .dash-header {
+        padding: 10px 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .dash-brand-title {
+        font-size: 14.5px;
+      }
+      .dash-status-pill {
+        display: none;
+      }
+      .dash-actions-top {
+        gap: 6px;
+      }
+      .dash-actions-top button {
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+      }
+      .dash-body {
+        flex-direction: column;
+      }
+      .dash-sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 8px 10px;
+        gap: 6px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        -webkit-overflow-scrolling: touch;
+        flex-shrink: 0;
+      }
+      .dash-nav-item {
+        white-space: nowrap;
+        font-size: 12px;
+        padding: 6px 10px;
+        flex-shrink: 0;
+      }
+      .dash-content {
+        padding: 16px;
+      }
+      .dash-section-title {
+        font-size: 18px;
+      }
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .dash-card {
+        padding: 14px 16px;
+        border-radius: 12px;
+        margin-bottom: 14px;
+      }
+      .form-input, .form-textarea, .form-select {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+    }
+
+    /* Small Mobile Phones (<= 480px) */
+    @media (max-width: 480px) {
+      .hero h1 {
+        top: 11vh;
+        font-size: clamp(30px, 8.8vw, 42px);
+      }
+      .hero__side {
+        bottom: 9vh;
+        width: calc(100vw - (var(--pad) * 2));
+      }
+      .hero__side p {
+        font-size: 14.5px;
+      }
+      .hero .flower--cosmos {
+        width: clamp(210px, 75vw, 320px);
+        left: -18vw;
+        bottom: -15vw;
+        max-height: 42vh;
+      }
+      .s1 .flower--hang {
+        width: clamp(160px, 46vw, 240px);
+        left: -8vw;
+        top: -6vw;
+        max-height: 40vh;
+      }
+      .s2 .flower--iris {
+        width: clamp(180px, 56vw, 280px);
+        right: -10vw;
+        bottom: -8vw;
+        max-height: 44vh;
+      }
+      .s3 .flower--passion {
+        width: clamp(170px, 50vw, 260px);
+        left: -12vw;
+        top: 3vh;
+        max-height: 40vh;
+      }
+      .foot {
+        padding: 11vh var(--pad) 65px;
+      }
+      .foot .cols {
+        gap: 28px;
+        font-size: 13px;
+      }
+      .login-box {
+        padding: 24px 18px;
+        max-width: 92vw;
+      }
+    }
+
+    /* Extra Small / Narrow Devices (<= 360px, e.g. Fold outer screens, iPhone SE 1st) */
+    @media (max-width: 360px) {
+      .logo {
+        font-size: 15px;
+      }
+      .logo svg {
+        width: 28px;
+        height: 28px;
+      }
+      .owner-trigger-btn {
+        padding: 4px 8px;
+        font-size: 10.5px;
+      }
+      .nav__cta {
+        font-size: 13px;
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .title {
+        font-size: 24px;
+      }
+      .copy {
+        font-size: 12.5px;
+      }
+      .hero .flower--cosmos, .s1 .flower--hang, .s2 .flower--iris, .s3 .flower--passion {
+        opacity: 0.8;
+      }
+    }
+
+    /* Short Screens / Landscape Mobile (max-height: 600px) */
+    @media (max-height: 600px) {
+      .hero h1 {
+        top: 10vh;
+        font-size: clamp(26px, 5.5vh, 40px);
+      }
+      .hero__side {
+        bottom: 6vh;
+      }
+      .hero .flower--cosmos, .s1 .flower--hang, .s2 .flower--iris, .s3 .flower--passion {
+        max-height: 45vh;
+      }
+      .s1 .num, .s3 .num {
+        top: 8vh;
+        font-size: clamp(50px, 14vh, 90px);
+      }
+      .s1 .text, .s3 .text {
+        bottom: 6vh;
+      }
+      .s2 .text {
+        top: 8vh;
+      }
+      .copy {
+        margin-top: 10px;
+        font-size: 13px;
+        line-height: 1.45;
+      }
     }
 
     /* =====================================================================
@@ -1774,6 +2255,7 @@
     const speedEls = document.querySelectorAll('[data-speed]');
     function updateDomScroll() {
       const h = window.innerHeight || 1;
+      const isMobile = window.innerWidth <= 768;
       speedEls.forEach((el) => {
         const sec = el.closest('section');
         if (!sec) return;
@@ -1781,7 +2263,9 @@
         const p = -rect.top / h;
         const speed = parseFloat(el.getAttribute('data-speed')) || 0;
         const rot = parseFloat(el.getAttribute('data-rot')) || 0;
-        el.style.transform = `translate3d(0, ${p * speed * h}px, 0) rotate(${p * rot}deg)`;
+        const speedMult = isMobile ? 0.6 : 1;
+        const rotMult = isMobile ? 0.6 : 1;
+        el.style.transform = `translate3d(0, ${p * speed * speedMult * h}px, 0) rotate(${p * rot * rotMult}deg)`;
       });
 
       const navY = h * 0.06;
